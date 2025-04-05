@@ -23,9 +23,15 @@
   <span> My tech-lang-portfolio</span>
 </mat-toolbar>
 
-<mat-grid-list cols="2" rowHeight="2:1">
-  <mat-grid-tile style="background-color: blue">1</mat-grid-tile>
-  <mat-grid-tile style="background-color: aqua">2</mat-grid-tile>
-  <mat-grid-tile style="background-color: darkorange">3</mat-grid-tile>
-  <mat-grid-tile style="background-color: purple">4</mat-grid-tile>
+<br />
+
+<mat-grid-list cols="4" rowHeight="100px">
+  @for (tile of tiles; track tile) {
+  <mat-grid-tile
+    [colspan]="tile.cols"
+    [rowspan]="tile.rows"
+    [style.background]="tile.color"
+    >{{ tile.text }}</mat-grid-tile
+  >
+  }
 </mat-grid-list>
