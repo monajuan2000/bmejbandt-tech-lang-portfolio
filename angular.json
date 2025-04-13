@@ -55,7 +55,8 @@
                   "maximumError": "8kB"
                 }
               ],
-              "outputHashing": "all"
+              "outputHashing": "all",
+              "baseHref": "/bmejbandt-tech-lang-portfolio/"
             },
             "development": {
               "optimization": false,
