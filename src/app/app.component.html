@@ -1,46 +1,86 @@
-<mat-toolbar>
-  <button
-    mat-icon-button
-    [matMenuTriggerFor]="menu"
-    aria-label="Example icon-button with a menu"
-  >
-    <mat-icon>more_vert</mat-icon>
-  </button>
-  <mat-menu #menu="matMenu">
-    <button mat-menu-item>
-      <mat-icon>dialpad</mat-icon>
-      <span>Redial</span>
-    </button>
-    <button mat-menu-item disabled>
-      <mat-icon>voicemail</mat-icon>
-      <span>Check voice mail</span>
-    </button>
-    <button mat-menu-item>
-      <mat-icon>notifications_off</mat-icon>
-      <span>Disable alerts</span>
-    </button>
-  </mat-menu>
-  <span> My tech-lang-portfolio</span>
-</mat-toolbar>
+<header>
+  <h1>Juanes Portfolio</h1>
+  <nav>
+    <a routerLink="/home">Home</a>
+    <a routerLink="/projects">Projects</a>
+  </nav>
+</header>
 
-<br />
 
-<mat-grid-list cols="4" rowHeight="100px">
-  @for (tile of tiles; track tile) {
-  <mat-grid-tile
-    [colspan]="tile.cols"
-    [rowspan]="tile.rows"
-    [style.background]="tile.color"
-    >{{ tile.text }}</mat-grid-tile
-  >
-  }
-</mat-grid-list>
-<video autoplay muted loop id="video-fondo">
-  <source src="assets/videos/PC-main-wallpaper-1.mp4" type="video/mp4" />
-  Tu navegador no soporta este video.
-</video>
+<section class="juan-portfolio-container">
+  <mat-card>
+    <!-- <img mat-card-image [src]="project.image" alt="{{project.title}}"> -->
 
-<!-- <div class="contenido">
-  <h1>Bienvenido a mi aplicación</h1>
-  <p>Este es un fondo con video.</p>
-</div> -->
+    <mat-card-title>This is a Title</mat-card-title>
+    <mat-card-subtitle>This is a subtitle</mat-card-subtitle>
+    <mat-card-content>
+      Where does it come from?
+      Contrary to popular belief,
+      Lorem Ipsum is not simply random text.
+      It has roots in a piece of classical Latin literature from 45 BC,
+      making it over 2000 years old. Richard McClintock, a Latin professor
+      at Hampden-Sydney College in Virginia, looked up one of the more
+      obscure Latin words, consectetur, from a Lorem Ipsum passage,
+      and going through the cites of the word in classical literature,
+      discovered the undoubtable source. Lorem Ipsum comes from sections
+      1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum"
+      (The Extremes of Good and Evil) by Cicero, written in 45 BC.
+      This book is a treatise on the theory of ethics,
+      very popular during the Renaissance. The first line of Lorem Ipsum,
+      "Lorem ipsum dolor sit amet..", comes from a line in section
+      1.10.32.
+
+      The standard chunk of Lorem Ipsum used since the 1500s is
+      reproduced below for those interested. Sections 1.10.32 and 1.10.33
+      from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in
+      their exact original form, accompanied by English versions from the
+      1914 translation by H. Rackham.
+    </mat-card-content>
+    <img mat-card-image src="assets/images/car-test-image1.jpg" alt="Car Photo">
+  </mat-card>
+
+</section>
+
+<aside>
+  <h4>Languages</h4>
+  <p>English, Spanish, Portuguese</p>
+</aside>
+
+<footer>
+  <address>Contact: juanesexample.com</address>
+</footer>
+
+<!-- <section>
+  <h2>Featured Projects</h2>
+  <article>
+    <h3>Car Showcase</h3>
+    <p>3D design with Angular Material and Tailwind</p>
+  </article>
+</section> -->
+
+<!-- <mat-toolbar style="background-color: #CBA135">
+
+  <span> My Portfolio</span>
+</mat-toolbar> -->
+
+
+<!-- <mat-sidenav-container>
+
+  <mat-sidenav mode="side" opened style="background-color: #D72638;">
+    <mat-nav-list>
+      <a mat-list-item >Home</a>
+      <a mat-list-item >Projects</a>
+      <a mat-list-item >About Me</a>
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <mat-sidenav-content >
+    <div class="grid-wrapper">
+      <mat-grid-list cols="4" rowHeight="1:1" gutterSize="16px">
+        <mat-grid-tile *ngFor="let project of projects">
+  </mat-grid-tile>
+      </mat-grid-list>
+    </div>
+  </mat-sidenav-content>
+
+</mat-sidenav-container> -->
