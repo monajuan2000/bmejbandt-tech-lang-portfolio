@@ -3,6 +3,11 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatGridListModule } from '@angular/material/grid-list';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatListModule } from '@angular/material/list';
+import { RouterModule } from '@angular/router';
+import { MatCardModule } from '@angular/material/card';
+import { CommonModule } from '@angular/common';
 
 export interface Tile {
   color: string;
@@ -13,18 +18,27 @@ export interface Tile {
 
 @Component({
   selector: 'app-root',
-  imports: [MatIconModule, MatToolbarModule, MatMenuModule, MatGridListModule],
+  imports: [
+    MatIconModule,
+    MatToolbarModule,
+    MatMenuModule,
+    MatGridListModule,
+    MatSidenavModule,
+    MatListModule,
+    RouterModule,
+    MatCardModule,
+    CommonModule
+  ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
 export class AppComponent {
-  [x: string]: any;
   title = 'bmejbandt-tech-lang-portfolio';
 
-  tiles: Tile[] = [
-    { text: 'One', cols: 3, rows: 1, color: 'lightblue' },
-    { text: 'Two', cols: 1, rows: 2, color: 'lightgreen' },
-    { text: 'Three', cols: 1, rows: 1, color: 'lightpink' },
-    { text: 'Four', cols: 2, rows: 1, color: '#DDBDF1' },
-  ];
+  projects = Array.from({ length: 10 }).map((_, i) => ({
+    title: `Project ${i + 1}`,
+    subtitle: `Category ${i + 1}`,
+    description: 'This is a modern professional project description with styling and features.',
+    image: 'assets/images/car-test-image1.jpg' // your card image path
+  }));
 }
