@@ -1,86 +1,41 @@
-<header>
-  <h1>Juanes Portfolio</h1>
-  <nav>
-    <a routerLink="/home">Home</a>
-    <a routerLink="/projects">Projects</a>
+<mat-toolbar class="main-toolbar mat-elevation-z6">
+  <div class="toolbar-content">
+    <span class="logo">Juan Esteban Mona</span>
+
+    <span class="spacer"></span>
+
+    <!-- Toggle button visible only on small screens -->
+    <button mat-icon-button class="menu-button" (click)="mobileMenuOpen = !mobileMenuOpen">
+      <mat-icon>menu</mat-icon>
+    </button>
+
+    <!-- Desktop nav -->
+    <nav class="nav-links desktop-nav">
+      <a mat-button routerLink="/" routerLinkActive="active-link" [routerLinkActiveOptions]="{ exact: true }">Home</a>
+      <a mat-button routerLink="/projects" routerLinkActive="active-link">Projects</a>
+      <a mat-button routerLink="/about" routerLinkActive="active-link">About</a>
+      <a mat-button routerLink="/contact" routerLinkActive="active-link">Contact</a>
+    </nav>
+  </div>
+
+  <!-- Mobile nav -->
+  <nav class="nav-links mobile-nav" *ngIf="mobileMenuOpen">
+    <a mat-button routerLink="/" routerLinkActive="active-link" [routerLinkActiveOptions]="{ exact: true }"
+      (click)="mobileMenuOpen = false">Home</a>
+    <a mat-button routerLink="/projects" routerLinkActive="active-link" (click)="mobileMenuOpen = false">Projects</a>
+    <a mat-button routerLink="/about" routerLinkActive="active-link" (click)="mobileMenuOpen = false">About</a>
+    <a mat-button routerLink="/contact" routerLinkActive="active-link" (click)="mobileMenuOpen = false">Contact</a>
   </nav>
-</header>
+</mat-toolbar>
 
+<main class="main-content">
+  <router-outlet></router-outlet>
+</main>
 
-<section class="juan-portfolio-container">
-  <mat-card>
-    <!-- <img mat-card-image [src]="project.image" alt="{{project.title}}"> -->
-
-    <mat-card-title>This is a Title</mat-card-title>
-    <mat-card-subtitle>This is a subtitle</mat-card-subtitle>
-    <mat-card-content>
-      Where does it come from?
-      Contrary to popular belief,
-      Lorem Ipsum is not simply random text.
-      It has roots in a piece of classical Latin literature from 45 BC,
-      making it over 2000 years old. Richard McClintock, a Latin professor
-      at Hampden-Sydney College in Virginia, looked up one of the more
-      obscure Latin words, consectetur, from a Lorem Ipsum passage,
-      and going through the cites of the word in classical literature,
-      discovered the undoubtable source. Lorem Ipsum comes from sections
-      1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum"
-      (The Extremes of Good and Evil) by Cicero, written in 45 BC.
-      This book is a treatise on the theory of ethics,
-      very popular during the Renaissance. The first line of Lorem Ipsum,
-      "Lorem ipsum dolor sit amet..", comes from a line in section
-      1.10.32.
-
-      The standard chunk of Lorem Ipsum used since the 1500s is
-      reproduced below for those interested. Sections 1.10.32 and 1.10.33
-      from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in
-      their exact original form, accompanied by English versions from the
-      1914 translation by H. Rackham.
-    </mat-card-content>
-    <img mat-card-image src="assets/images/car-test-image1.jpg" alt="Car Photo">
-  </mat-card>
-
+<section>
+  <app-home></app-home>
 </section>
 
-<aside>
-  <h4>Languages</h4>
-  <p>English, Spanish, Portuguese</p>
-</aside>
-
-<footer>
-  <address>Contact: juanesexample.com</address>
+<footer class="footer mat-elevation-z2">
+  <p>© {{ 2023 }} Juan Esteban Mona. All rights reserved.</p>
 </footer>
-
-<!-- <section>
-  <h2>Featured Projects</h2>
-  <article>
-    <h3>Car Showcase</h3>
-    <p>3D design with Angular Material and Tailwind</p>
-  </article>
-</section> -->
-
-<!-- <mat-toolbar style="background-color: #CBA135">
-
-  <span> My Portfolio</span>
-</mat-toolbar> -->
-
-
-<!-- <mat-sidenav-container>
-
-  <mat-sidenav mode="side" opened style="background-color: #D72638;">
-    <mat-nav-list>
-      <a mat-list-item >Home</a>
-      <a mat-list-item >Projects</a>
-      <a mat-list-item >About Me</a>
-    </mat-nav-list>
-  </mat-sidenav>
-
-  <mat-sidenav-content >
-    <div class="grid-wrapper">
-      <mat-grid-list cols="4" rowHeight="1:1" gutterSize="16px">
-        <mat-grid-tile *ngFor="let project of projects">
-  </mat-grid-tile>
-      </mat-grid-list>
-    </div>
-  </mat-sidenav-content>
-
-</mat-sidenav-container> -->

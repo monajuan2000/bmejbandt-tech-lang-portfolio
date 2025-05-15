@@ -8,6 +8,7 @@ import { MatListModule } from '@angular/material/list';
 import { RouterModule } from '@angular/router';
 import { MatCardModule } from '@angular/material/card';
 import { CommonModule } from '@angular/common';
+import { HomeComponent } from "../shared/components/home/home.component";
 
 export interface Tile {
   color: string;
@@ -27,18 +28,13 @@ export interface Tile {
     MatListModule,
     RouterModule,
     MatCardModule,
-    CommonModule
+    CommonModule,
+    HomeComponent
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
 export class AppComponent {
   title = 'bmejbandt-tech-lang-portfolio';
-
-  projects = Array.from({ length: 10 }).map((_, i) => ({
-    title: `Project ${i + 1}`,
-    subtitle: `Category ${i + 1}`,
-    description: 'This is a modern professional project description with styling and features.',
-    image: 'assets/images/car-test-image1.jpg' // your card image path
-  }));
+  mobileMenuOpen = false;
 }
