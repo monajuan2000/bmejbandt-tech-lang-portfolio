@@ -1,0 +1,116 @@
+<section class="home-page">
+    <header class="featured-project" aria-label="Featured tourism project">
+        <div class="featured-copy">
+            <p class="eyebrow">Currently working on</p>
+            <h2>Beat and Beach Colombia</h2>
+            <p class="lead">
+                A tourism-oriented digital experience designed to promote beach destinations and travel inspiration
+                across Colombia with an engaging and conversion-focused brand presence.
+            </p>
+
+            <div class="hero-actions">
+                <a class="primary-button" href="https://monajuan2000.github.io/beatandbeach-colombia-web-app/"
+                    target="_blank" rel="noreferrer">
+                    Visit project
+                </a>
+                <a class="secondary-button" routerLink="/projects">See all projects</a>
+            </div>
+        </div>
+
+        <div class="featured-visual">
+            <div class="featured-image-wrapper">
+                <img src="assets/images/BEATANDBEACH_COLOMBIA_MAINLOGO.png" alt="Beat and Beach Colombia main logo" />
+            </div>
+        </div>
+    </header>
+
+    <header class="hero">
+        <div class="hero-copy">
+            <p class="eyebrow">Portfolio</p>
+            <h1>Building products, systems, and experiences that move ideas forward.</h1>
+            <p class="lead">
+                I design and develop digital products across product strategy, front-end engineering,
+                backend systems, and cloud delivery.
+            </p>
+
+            <div class="hero-actions">
+                <a class="primary-button" routerLink="/projects">Explore projects</a>
+                <a class="secondary-button" routerLink="/about">About me</a>
+            </div>
+        </div>
+
+        <div class="hero-stats">
+            <div class="stat-card">
+                <span class="stat-number">{{ totalProjects }}</span>
+                <span class="stat-label">Projects</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number">5</span>
+                <span class="stat-label">Categories</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number">100%</span>
+                <span class="stat-label">Product focus</span>
+            </div>
+        </div>
+    </header>
+
+    <section class="categories-section">
+        <div class="section-header">
+            <div>
+                <p class="eyebrow">Categories</p>
+                <h2>{{ selectedCategoryLabel }}</h2>
+            </div>
+
+            <div class="filter-group" role="tablist" aria-label="Project categories filter">
+                <button type="button" class="filter-button" [class.active]="selectedCategoryId === 'all'"
+                    (click)="selectCategory('all')">
+                    All
+                </button>
+
+                @for (category of categories; track category.id) {
+                <button type="button" class="filter-button" [class.active]="selectedCategoryId === category.id"
+                    (click)="selectCategory(category.id)">
+                    {{ category.name }}
+                </button>
+                }
+            </div>
+        </div>
+
+        <div class="category-grid">
+            @for (category of filteredCategories; track category.id) {
+            <article class="category-card" [style.border-color]="category.accent">
+                <div class="category-header">
+                    <span class="category-icon" [style.background]="category.accent">{{ category.icon }}</span>
+                    <div class="category-title-wrap">
+                        <h3>{{ category.name }}</h3>
+                        <p>{{ category.description }}</p>
+                    </div>
+                </div>
+
+                <ul class="project-list">
+                    @for (project of category.projects; track project.title) {
+                    <li class="project-item">
+                        <div class="project-meta">
+                            <span class="project-type">{{ project.type }}</span>
+                            @if (project.link) {
+                            <a [href]="project.link" target="_blank" rel="noreferrer">View</a>
+                            }
+                        </div>
+
+                        <h4>{{ project.title }}</h4>
+                        <p>{{ project.description }}</p>
+
+                        <div class="technology-stack">
+                            @for (technology of project.technologies; track technology) {
+                            <span>{{ technology }}</span>
+                            }
+                        </div>
+                    </li>
+                    }
+                </ul>
+            </article>
+            }
+        </div>
+    </section>
+</section>

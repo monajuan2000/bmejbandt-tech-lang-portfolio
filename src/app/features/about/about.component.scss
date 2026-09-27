@@ -1,0 +1,33 @@
+:host {
+    display: block;
+    width: 100%;
+}
+
+.page-shell {
+    width: min(1000px, calc(100% - 32px));
+    margin: 0 auto;
+    padding: 56px 0 80px;
+}
+
+.eyebrow {
+    margin: 0 0 10px;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: #4f46e5;
+    font-weight: 700;
+}
+
+h1 {
+    margin: 0;
+    font-size: clamp(2.2rem, 4vw, 3.5rem);
+    color: #111827;
+}
+
+.lead {
+    margin-top: 18px;
+    max-width: 720px;
+    color: #4b5563;
+    line-height: 1.8;
+    font-size: 1.05rem;
+}

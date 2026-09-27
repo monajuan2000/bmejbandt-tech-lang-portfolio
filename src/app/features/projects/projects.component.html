@@ -1,0 +1,33 @@
+<section class="page-shell">
+    <header class="page-header">
+        <p class="eyebrow">Projects</p>
+        <h1>Selected work across disciplines</h1>
+        <p class="lead">
+            A structured overview of the initiatives I have worked on across product, engineering,
+            data, and platform delivery.
+        </p>
+    </header>
+
+    <div class="projects-grid">
+        @for (category of categories; track category.id) {
+        <article class="project-panel" [style.border-color]="category.accent">
+            <div class="panel-header">
+                <span class="category-badge" [style.background]="category.accent">{{ category.icon }}</span>
+                <h2>{{ category.name }}</h2>
+            </div>
+
+            <p class="category-description">{{ category.description }}</p>
+
+            <ul class="project-list">
+                @for (project of category.projects; track project.title) {
+                <li>
+                    <h3>{{ project.title }}</h3>
+                    <span>{{ project.type }}</span>
+                    <p>{{ project.description }}</p>
+                </li>
+                }
+            </ul>
+        </article>
+        }
+    </div>
+</section>

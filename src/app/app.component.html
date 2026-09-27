@@ -1,16 +1,22 @@
+<video class="background-video" autoplay muted loop playsinline aria-label="Animated background video">
+  <source src="assets/videos/PC-main-wallpaper-1.mp4" type="video/mp4" />
+  Your browser does not support the video tag.
+</video>
+
 <mat-toolbar class="main-toolbar mat-elevation-z6">
   <div class="toolbar-content">
-    <span class="logo">Juan Esteban Mona</span>
+    <div class="brand-block">
+      <span class="logo">Juan Esteban Mona</span>
+      <span class="brand-tag">Portfolio</span>
+    </div>
 
     <span class="spacer"></span>
 
-    <!-- Toggle button visible only on small screens -->
-    <button mat-icon-button class="menu-button" (click)="mobileMenuOpen = !mobileMenuOpen">
+    <button mat-icon-button class="menu-button" (click)="mobileMenuOpen = !mobileMenuOpen" aria-label="Toggle menu">
       <mat-icon>menu</mat-icon>
     </button>
 
-    <!-- Desktop nav -->
-    <nav class="nav-links desktop-nav">
+    <nav class="nav-links desktop-nav" aria-label="Main navigation">
       <a mat-button routerLink="/" routerLinkActive="active-link" [routerLinkActiveOptions]="{ exact: true }">Home</a>
       <a mat-button routerLink="/projects" routerLinkActive="active-link">Projects</a>
       <a mat-button routerLink="/about" routerLinkActive="active-link">About</a>
@@ -18,8 +24,7 @@
     </nav>
   </div>
 
-  <!-- Mobile nav -->
-  <nav class="nav-links mobile-nav" *ngIf="mobileMenuOpen">
+  <nav class="nav-links mobile-nav" *ngIf="mobileMenuOpen" aria-label="Mobile navigation">
     <a mat-button routerLink="/" routerLinkActive="active-link" [routerLinkActiveOptions]="{ exact: true }"
       (click)="mobileMenuOpen = false">Home</a>
     <a mat-button routerLink="/projects" routerLinkActive="active-link" (click)="mobileMenuOpen = false">Projects</a>
@@ -32,10 +37,6 @@
   <router-outlet></router-outlet>
 </main>
 
-<section>
-  <app-home></app-home>
-</section>
-
 <footer class="footer mat-elevation-z2">
-  <p>© {{ 2023 }} Juan Esteban Mona. All rights reserved.</p>
+  <p>© 2026 Juan Esteban Mona. All rights reserved.</p>
 </footer>
