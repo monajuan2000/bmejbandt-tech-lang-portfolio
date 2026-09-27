@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatIconModule } from '@angular/material/icon';
@@ -24,9 +24,55 @@ import { RouterModule } from '@angular/router';
     RouterModule,
   ],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss',
+  styleUrls: ['./app.component.scss'],
 })
-export class AppComponent {
+export class AppComponent implements AfterViewInit {
+  @ViewChild('bgVideo', { static: false }) bgVideo?: ElementRef<HTMLVideoElement>;
   title = 'bmejbandt-tech-lang-portfolio';
   mobileMenuOpen = false;
+
+  ngAfterViewInit(): void {
+    const v = this.bgVideo?.nativeElement;
+    if (!v) return;
+
+    const tryPlay = async () => {
+      try {
+        v.muted = true;
+        v.autoplay = true;
+        if (v.readyState < 3) {
+          await new Promise<void>((resolve) => {
+            const onCanPlay = () => {
+              v.removeEventListener('canplay', onCanPlay);
+              resolve();
+            };
+            v.addEventListener('canplay', onCanPlay);
+            setTimeout(resolve, 2000);
+          });
+        }
+        await v.play();
+        cleanupInteractionListeners();
+      } catch {
+        // allow user interaction to trigger play
+      }
+    };
+
+    const onUserInteract = () => tryPlay();
+    const onVisibility = () => { if (document.visibilityState === 'visible') tryPlay(); };
+    const cleanupInteractionListeners = () => {
+      document.removeEventListener('pointerdown', onUserInteract);
+      document.removeEventListener('touchstart', onUserInteract);
+      document.removeEventListener('click', onUserInteract);
+      document.removeEventListener('visibilitychange', onVisibility);
+      window.removeEventListener('focus', onUserInteract);
+    };
+
+    tryPlay();
+    document.addEventListener('pointerdown', onUserInteract, { passive: true });
+    document.addEventListener('touchstart', onUserInteract, { passive: true });
+    document.addEventListener('click', onUserInteract, { passive: true });
+    document.addEventListener('visibilitychange', onVisibility);
+    window.addEventListener('focus', onUserInteract);
+
+    v.addEventListener('error', () => { });
+  }
 }
