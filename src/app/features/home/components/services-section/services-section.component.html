@@ -1,10 +1,12 @@
+@let t = translations().servicesSection;
+
 <section class="section container" aria-labelledby="services-title">
   <app-section-header
     appReveal
     headingId="services-title"
-    eyebrow="What I do"
-    title="Technology, engineering and language"
-    description="A blend of product engineering and communication skills to help teams ship with clarity."
+    [eyebrow]="t.eyebrow"
+    [title]="t.title"
+    [description]="t.description"
   />
 
   <ul class="card-grid">

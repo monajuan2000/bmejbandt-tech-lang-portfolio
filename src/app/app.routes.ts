@@ -1,5 +1,7 @@
 import { Routes } from '@angular/router';
 
+import { PageTitleKey } from '@core/i18n';
+
 /** Each feature owns its routes and is lazy loaded into its own bundle. */
 export const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home' },
@@ -21,7 +23,7 @@ export const routes: Routes = [
   },
   {
     path: '**',
-    title: 'Page not found',
+    title: 'notFound' satisfies PageTitleKey,
     loadComponent: () => import('@features/not-found/not-found-page.component').then((m) => m.NotFoundPageComponent),
   },
 ];

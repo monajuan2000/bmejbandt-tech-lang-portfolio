@@ -18,14 +18,18 @@
       rel="stylesheet"
     />
     <script>
-      // Apply the saved/system theme before first paint to avoid a flash. Mirrors ThemeService.
+      // Apply the saved/system theme and language before first paint. Mirrors ThemeService and LanguageService.
       (function () {
         try {
+          var root = document.documentElement;
           var theme = localStorage.getItem('portfolio-theme');
           if (theme !== 'light' && theme !== 'dark') {
             theme = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
           }
-          document.documentElement.setAttribute('data-theme', theme);
+          root.setAttribute('data-theme', theme);
+
+          var language = localStorage.getItem('portfolio-language') || navigator.language.slice(0, 2).toLowerCase();
+          root.setAttribute('lang', language === 'es' ? 'es' : 'en');
         } catch (error) {}
       })();
     </script>

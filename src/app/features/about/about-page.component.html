@@ -1,5 +1,7 @@
+@let t = translations().aboutPage;
+
 <div class="page container">
-  <app-section-header [level]="1" eyebrow="About" title="Creating thoughtful digital experiences with a product mindset." />
+  <app-section-header [level]="1" [eyebrow]="t.eyebrow" [title]="t.title" />
 
   <div class="intro glass" appReveal>
     @for (paragraph of profile().about; track $index) {
@@ -8,13 +10,18 @@
   </div>
 
   <section class="section" aria-labelledby="skills-title">
-    <app-section-header appReveal headingId="skills-title" eyebrow="Toolkit" title="Skills & technologies" />
+    <app-section-header appReveal headingId="skills-title" [eyebrow]="t.skillsEyebrow" [title]="t.skillsTitle" />
     <app-skill-groups [groups]="skillGroups()" />
   </section>
 
   @if (experience().length > 0) {
     <section class="section" aria-labelledby="experience-title">
-      <app-section-header appReveal headingId="experience-title" eyebrow="Journey" title="Experience" />
+      <app-section-header
+        appReveal
+        headingId="experience-title"
+        [eyebrow]="t.experienceEyebrow"
+        [title]="t.experienceTitle"
+      />
       <app-experience-timeline [items]="experience()" />
     </section>
   }

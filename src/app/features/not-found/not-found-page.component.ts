@@ -1,18 +1,21 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
+import { LanguageService } from '@core/i18n';
 import { IconComponent } from '@shared/components/icon/icon.component';
 
 @Component({
   selector: 'app-not-found-page',
   imports: [RouterLink, IconComponent],
   template: `
+    @let t = translations().notFoundPage;
+
     <section class="page container not-found">
       <p class="not-found__code text-gradient" aria-hidden="true">404</p>
-      <h1 class="not-found__title">This page drifted out to sea.</h1>
-      <p class="lead">The page you are looking for does not exist or has been moved.</p>
+      <h1 class="not-found__title">{{ t.title }}</h1>
+      <p class="lead">{{ t.description }}</p>
       <a class="btn btn--primary" routerLink="/home">
-        Back to home
+        {{ t.backHome }}
         <app-icon name="arrow-right" [size]="18" />
       </a>
     </section>
@@ -40,4 +43,6 @@ import { IconComponent } from '@shared/components/icon/icon.component';
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class NotFoundPageComponent {}
+export class NotFoundPageComponent {
+  protected readonly translations = inject(LanguageService).translations;
+}

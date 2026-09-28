@@ -1,5 +1,7 @@
-<div class="filter" role="group" aria-label="Filter projects by discipline">
-  <button type="button" class="chip" [attr.aria-pressed]="selected() === 'all'" (click)="select('all')">All</button>
+<div class="filter" role="group" [attr.aria-label]="label()">
+  <button type="button" class="chip" [attr.aria-pressed]="selected() === 'all'" (click)="select('all')">
+    {{ allLabel() }}
+  </button>
 
   @for (category of categories(); track category.id) {
     <button

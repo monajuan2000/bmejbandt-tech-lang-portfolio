@@ -30,5 +30,6 @@ import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 })
 export class TagListComponent {
   readonly tags = input.required<readonly string[]>();
-  readonly label = input('Technologies');
+  /** Accessible name for the list, provided by the caller in the active language. */
+  readonly label = input<string>();
 }

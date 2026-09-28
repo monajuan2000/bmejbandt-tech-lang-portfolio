@@ -1,18 +1,23 @@
-import { Injectable, computed, signal } from '@angular/core';
+import { Injectable, computed, inject } from '@angular/core';
 
 import { PROJECT_CATEGORIES, PROJECTS } from '@core/data';
+import { LanguageService } from '@core/i18n';
 import { Project, ProjectCategory, ProjectCategoryId } from '@core/models';
 
 export type ProjectFilter = ProjectCategoryId | 'all';
 
+const CATEGORY_IDS: ReadonlySet<ProjectCategoryId> = new Set(PROJECT_CATEGORIES.map((category) => category.id));
+
 /**
- * Read-only access to projects and categories. Backed by static data today; swap the
- * signal sources for an HTTP resource later without touching any consumer.
+ * Read-only access to projects and categories, resolved in the active language.
+ * Backed by static data today; swap the sources for an HTTP resource later without touching consumers.
  */
 @Injectable({ providedIn: 'root' })
 export class ProjectService {
-  readonly categories = signal<readonly ProjectCategory[]>(PROJECT_CATEGORIES).asReadonly();
-  readonly projects = signal<readonly Project[]>(PROJECTS).asReadonly();
+  private readonly languageService = inject(LanguageService);
+
+  readonly categories = computed<readonly ProjectCategory[]>(() => this.languageService.resolve(PROJECT_CATEGORIES));
+  readonly projects = computed<readonly Project[]>(() => this.languageService.resolve(PROJECTS));
 
   readonly featuredProject = computed(() => this.projects().find((project) => project.featured));
 
@@ -40,7 +45,8 @@ export class ProjectService {
     return filter === 'all' ? this.projects() : this.projects().filter((project) => project.categoryId === filter);
   }
 
+  /** Language-independent on purpose: callers inside `computed`/`linkedSignal` must not re-run on language change. */
   isCategoryId(value: string | null | undefined): value is ProjectCategoryId {
-    return !!value && this.categoriesById().has(value as ProjectCategoryId);
+    return !!value && CATEGORY_IDS.has(value as ProjectCategoryId);
   }
 }

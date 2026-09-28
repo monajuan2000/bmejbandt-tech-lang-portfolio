@@ -3,15 +3,17 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { NavigationEnd, Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { filter } from 'rxjs';
 
-import { NAVIGATION_ITEMS } from '@core/data';
-import { ProfileService, ThemeService } from '@core/services';
+import { LanguageService } from '@core/i18n';
+import { NavigationService, ProfileService, ThemeService } from '@core/services';
 import { IconComponent } from '@shared/components/icon/icon.component';
+
+import { LanguageSwitcherComponent } from '../language-switcher/language-switcher.component';
 
 const SCROLL_THRESHOLD_PX = 12;
 
 @Component({
   selector: 'app-site-header',
-  imports: [RouterLink, RouterLinkActive, IconComponent],
+  imports: [RouterLink, RouterLinkActive, IconComponent, LanguageSwitcherComponent],
   templateUrl: './site-header.component.html',
   styleUrl: './site-header.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -23,8 +25,9 @@ const SCROLL_THRESHOLD_PX = 12;
   },
 })
 export class SiteHeaderComponent {
-  protected readonly navigationItems = NAVIGATION_ITEMS;
+  protected readonly navigationItems = inject(NavigationService).items;
   protected readonly profile = inject(ProfileService).profile;
+  protected readonly translations = inject(LanguageService).translations;
   protected readonly themeService = inject(ThemeService);
 
   protected readonly isMenuOpen = signal(false);

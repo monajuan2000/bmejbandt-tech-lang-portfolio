@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, DestroyRef, inject, signal } from '@angular/core';
 
+import { LanguageService } from '@core/i18n';
 import { ProfileService } from '@core/services';
 import { IconComponent } from '@shared/components/icon/icon.component';
 import { SectionHeaderComponent } from '@shared/components/section-header/section-header.component';
@@ -16,6 +17,7 @@ const COPY_FEEDBACK_DURATION_MS = 2000;
 })
 export class ContactPageComponent {
   protected readonly profile = inject(ProfileService).profile;
+  protected readonly translations = inject(LanguageService).translations;
   protected readonly isEmailCopied = signal(false);
 
   private feedbackTimeoutId?: ReturnType<typeof setTimeout>;

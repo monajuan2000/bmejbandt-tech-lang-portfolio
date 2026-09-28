@@ -1,23 +1,19 @@
 @let currentProfile = profile();
+@let t = translations().contactPage;
 
 <div class="page container">
-  <app-section-header
-    [level]="1"
-    eyebrow="Contact"
-    title="Let's build something meaningful."
-    description="I'm open to product, engineering, and collaboration opportunities across digital experiences and platforms."
-  />
+  <app-section-header [level]="1" [eyebrow]="t.eyebrow" [title]="t.title" [description]="t.description" />
 
   <div class="email glass" appReveal>
     <div class="email__copy">
-      <p class="eyebrow">Preferred channel</p>
+      <p class="eyebrow">{{ t.preferredChannel }}</p>
       <a class="email__address" [href]="'mailto:' + currentProfile.email">{{ currentProfile.email }}</a>
     </div>
     <button type="button" class="btn btn--ghost" (click)="copyEmail()">
       <app-icon [name]="isEmailCopied() ? 'check' : 'copy'" [size]="18" />
-      {{ isEmailCopied() ? 'Copied!' : 'Copy email' }}
+      {{ isEmailCopied() ? t.copied : t.copyEmail }}
     </button>
-    <span class="visually-hidden" aria-live="polite">{{ isEmailCopied() ? 'Email copied to clipboard' : '' }}</span>
+    <span class="visually-hidden" aria-live="polite">{{ isEmailCopied() ? t.copiedAnnouncement : '' }}</span>
   </div>
 
   <ul class="card-grid channels">

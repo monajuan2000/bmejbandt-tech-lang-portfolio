@@ -1,5 +1,6 @@
 export * from './experience.model';
 export * from './icon-name.model';
+export * from './localization.model';
 export * from './navigation-item.model';
 export * from './profile.model';
 export * from './project.model';

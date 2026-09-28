@@ -1,27 +1,27 @@
-import { SkillGroup } from '@core/models';
+import { SkillGroupContent } from '@core/models';
 
-export const SKILL_GROUPS: readonly SkillGroup[] = [
+export const SKILL_GROUPS: readonly SkillGroupContent[] = [
   {
     id: 'frontend',
-    name: 'Frontend',
+    name: { en: 'Frontend', es: 'Frontend' },
     icon: 'monitor',
     skills: ['Angular', 'TypeScript', 'RxJS', 'SCSS', 'Angular Material', 'Accessibility'],
   },
   {
     id: 'backend',
-    name: 'Backend',
+    name: { en: 'Backend', es: 'Backend' },
     icon: 'server',
     skills: ['Node.js', 'Express', 'REST APIs', 'JWT', 'PostgreSQL'],
   },
   {
     id: 'data',
-    name: 'Data & AI',
+    name: { en: 'Data & AI', es: 'Datos e IA' },
     icon: 'chart',
     skills: ['Python', 'SQL', 'Power BI', 'ETL'],
   },
   {
     id: 'cloud',
-    name: 'Cloud & DevOps',
+    name: { en: 'Cloud & DevOps', es: 'Cloud y DevOps' },
     icon: 'cloud',
     skills: ['GitHub Actions', 'Docker', 'Azure', 'Terraform'],
   },

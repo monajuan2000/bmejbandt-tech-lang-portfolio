@@ -2,6 +2,7 @@ import { NgOptimizedImage } from '@angular/common';
 import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
+import { LanguageService } from '@core/i18n';
 import { ProjectService } from '@core/services';
 import { IconComponent } from '@shared/components/icon/icon.component';
 import { TagListComponent } from '@shared/components/tag-list/tag-list.component';
@@ -17,6 +18,7 @@ import { RevealDirective } from '@shared/directives/reveal.directive';
 export class FeaturedProjectSectionComponent {
   private readonly projectService = inject(ProjectService);
 
+  protected readonly translations = inject(LanguageService).translations;
   protected readonly project = this.projectService.featuredProject;
   protected readonly category = computed(() => {
     const project = this.project();

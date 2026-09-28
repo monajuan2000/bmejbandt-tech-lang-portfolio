@@ -1,6 +1,7 @@
 import { Location } from '@angular/common';
 import { ChangeDetectionStrategy, Component, computed, inject, input, linkedSignal } from '@angular/core';
 
+import { LanguageService } from '@core/i18n';
 import { ProjectCategory, ProjectCategoryId } from '@core/models';
 import { ProjectFilter, ProjectService } from '@core/services';
 import { CallToActionComponent } from '@shared/components/call-to-action/call-to-action.component';
@@ -24,6 +25,7 @@ export class ProjectsPageComponent {
   /** Bound from the `?category=` query param via `withComponentInputBinding()`. */
   readonly category = input<string>();
 
+  protected readonly translations = inject(LanguageService).translations;
   protected readonly categories = this.projectService.categories;
 
   protected readonly selectedFilter = linkedSignal<ProjectFilter>(() => {
@@ -33,10 +35,9 @@ export class ProjectsPageComponent {
 
   protected readonly visibleProjects = computed(() => this.projectService.filterProjects(this.selectedFilter()));
 
-  protected readonly resultLabel = computed(() => {
-    const count = this.visibleProjects().length;
-    return `${count} ${count === 1 ? 'project' : 'projects'}`;
-  });
+  protected readonly resultLabel = computed(() =>
+    this.translations().common.projectCount(this.visibleProjects().length),
+  );
 
   protected getCategory(categoryId: ProjectCategoryId): ProjectCategory | undefined {
     return this.projectService.getCategory(categoryId);

@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
+import { LanguageService } from '@core/i18n';
 import { ProfileService, ProjectService } from '@core/services';
 import { IconComponent } from '@shared/components/icon/icon.component';
 
@@ -21,10 +22,14 @@ export class HeroSectionComponent {
   private readonly projectService = inject(ProjectService);
 
   protected readonly profile = this.profileService.profile;
+  protected readonly translations = inject(LanguageService).translations;
 
-  protected readonly stats = computed<readonly HeroStat[]>(() => [
-    { value: `${this.projectService.projects().length}+`, label: 'Projects' },
-    { value: `${this.projectService.categories().length}`, label: 'Disciplines' },
-    { value: `${this.profileService.services().length}`, label: 'Services' },
-  ]);
+  protected readonly stats = computed<readonly HeroStat[]>(() => {
+    const t = this.translations().hero;
+    return [
+      { value: `${this.projectService.projects().length}+`, label: t.projectsStat },
+      { value: `${this.projectService.categories().length}`, label: t.disciplinesStat },
+      { value: `${this.profileService.services().length}`, label: t.servicesStat },
+    ];
+  });
 }

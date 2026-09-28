@@ -1,5 +1,7 @@
+@let t = translations().header;
+
 <div class="bar container">
-  <a class="brand" routerLink="/home" [attr.aria-label]="profile().fullName + ' — home'">
+  <a class="brand" routerLink="/home" [attr.aria-label]="t.homeLink(profile().fullName)">
     <span class="brand__mark" aria-hidden="true">{{ profile().initials }}</span>
     <span class="brand__text">
       <span class="brand__name">{{ profile().fullName }}</span>
@@ -7,9 +9,9 @@
     </span>
   </a>
 
-  <nav id="primary-navigation" class="nav" aria-label="Primary">
+  <nav id="primary-navigation" class="nav" [attr.aria-label]="t.primaryNavigation">
     <ul class="nav__list">
-      @for (item of navigationItems; track item.path) {
+      @for (item of navigationItems(); track item.path) {
         <li>
           <a
             class="nav__link"
@@ -25,11 +27,13 @@
   </nav>
 
   <div class="actions">
+    <app-language-switcher />
+
     <button
       type="button"
       class="icon-button"
       (click)="themeService.toggle()"
-      [attr.aria-label]="themeService.isDark() ? 'Switch to light theme' : 'Switch to dark theme'"
+      [attr.aria-label]="themeService.isDark() ? t.switchToLightTheme : t.switchToDarkTheme"
     >
       <app-icon [name]="themeService.isDark() ? 'sun' : 'moon'" />
     </button>
@@ -40,7 +44,7 @@
       (click)="toggleMenu()"
       aria-controls="primary-navigation"
       [attr.aria-expanded]="isMenuOpen()"
-      [attr.aria-label]="isMenuOpen() ? 'Close menu' : 'Open menu'"
+      [attr.aria-label]="isMenuOpen() ? t.closeMenu : t.openMenu"
     >
       <app-icon [name]="isMenuOpen() ? 'close' : 'menu'" />
     </button>

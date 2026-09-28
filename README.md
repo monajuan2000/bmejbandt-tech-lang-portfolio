@@ -18,11 +18,13 @@ npm test           # unit tests (Karma + Jasmine)
 src/
 ├── app/
 │   ├── core/                 # App-wide, framework-agnostic building blocks (singletons)
-│   │   ├── data/             # Static content: profile, projects, skills, services, navigation
+│   │   ├── data/             # Static content (LocalizedText): profile, projects, skills, services, navigation
+│   │   ├── i18n/             # Language config, UI dictionaries (translations/), LanguageService
 │   │   ├── models/           # TypeScript interfaces and domain types
 │   │   ├── services/         # Signal-based state and data access (ProjectService, ThemeService…)
-│   │   └── strategies/       # Router strategies (page titles)
-│   ├── layout/               # Persistent shell pieces: header, footer, background video
+│   │   ├── strategies/       # Router strategies (translated page titles)
+│   │   └── utils/            # Framework-free helpers (storage, view transitions)
+│   ├── layout/               # Persistent shell pieces: header, footer, language switcher, background video
 │   ├── shared/               # Reusable, presentation-only UI
 │   │   ├── components/       # icon, section-header, project-card, tag-list, call-to-action
 │   │   └── directives/       # reveal (scroll-in animation)
@@ -41,18 +43,31 @@ src/
 ### Dependency rules
 
 - `features` may import from `core`, `shared` and `layout`; features never import from each other.
-- `shared` may import from `core/models` only; it has no knowledge of services or routes.
+- `shared` may import from `core/models` and `core/i18n` only; it has no knowledge of data services or routes.
 - `core` never imports from `features`, `layout` or `shared`.
 - Use the path aliases `@core/*`, `@shared/*`, `@layout/*` and `@features/*` instead of long relative paths.
 
 ### Conventions
 
-- **English only** for every identifier, file name, comment and UI string.
+- **English only** for every identifier, file name and comment. Other languages appear only as translated values
+  in `core/i18n/translations/` and in `LocalizedText` fields; never hardcode user-visible text in templates.
 - Standalone components with `ChangeDetectionStrategy.OnPush`, `inject()`, signal `input()`/`output()`, and `@if`/`@for`/`@defer`.
 - File naming: `name.component.ts`, `name-page.component.ts` for routed pages, `name.service.ts`, `name.model.ts`, `name.data.ts`, `feature.routes.ts`.
 - Styles use design tokens (`var(--color-*)`, `var(--space-*)`); never hardcode colors in components.
   Breakpoints come from `src/styles/_breakpoints.scss`: `@use 'breakpoints' as bp;` → `@include bp.down(md) { … }`.
 - Content changes live in `src/app/core/data/`; components render whatever the services expose.
+
+## Internationalization
+
+The client-facing UI is available in English and Spanish; **source code stays in English**.
+
+- **UI copy** (buttons, headings, aria labels) lives in `core/i18n/translations/`. `en.translations.ts` defines the shape and `es.translations.ts` is type-checked against it, so a missing key fails the build.
+- **Content** (projects, services, profile…) is authored in `core/data/` as `LocalizedText` (`{ en, es }`). Services resolve it with `LanguageService.resolve()` and expose plain strings, so components never deal with languages.
+- **Components** read UI copy via `inject(LanguageService).translations` and `@let t = translations().section;` in templates.
+- **Route titles** are translation keys (`title: 'home' satisfies PageTitleKey`).
+- The choice is stored in `localStorage`; the first visit falls back to the browser language.
+
+To add a language: add its code to `Language` (`core/models/localization.model.ts`) and `LANGUAGE_OPTIONS`, create `<code>.translations.ts`, register it in `TRANSLATIONS`, and the compiler will point at every `LocalizedText` missing the new key.
 
 ## Common tasks
 
@@ -64,6 +79,7 @@ src/
 | Add an icon | `shared/components/icon/icon.registry.ts` + `core/models/icon-name.model.ts` |
 | Add a page | `features/<name>/` with `<name>-page.component.ts` + `<name>.routes.ts`, then register it in `app.routes.ts` and `core/data/navigation.data.ts` |
 | Change colors / theme | `src/styles/_tokens.scss` |
+| Add or change UI text | `core/i18n/translations/en.translations.ts` + `es.translations.ts` |
 
 ## Deployment
 

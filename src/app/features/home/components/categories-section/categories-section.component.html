@@ -1,10 +1,12 @@
+@let t = translations().categoriesSection;
+
 <section class="section container" aria-labelledby="categories-title">
   <app-section-header
     appReveal
     headingId="categories-title"
-    eyebrow="Disciplines"
-    title="Work across the whole stack"
-    description="Pick a discipline to jump straight into the related projects."
+    [eyebrow]="t.eyebrow"
+    [title]="t.title"
+    [description]="t.description"
   />
 
   <ul class="card-grid">
@@ -24,7 +26,7 @@
             <span class="category__description">{{ category.description }}</span>
           </span>
           <span class="category__count">
-            {{ category.projectCount }} {{ category.projectCount === 1 ? 'project' : 'projects' }}
+            {{ category.projectCountLabel }}
             <app-icon name="arrow-right" [size]="16" />
           </span>
         </a>

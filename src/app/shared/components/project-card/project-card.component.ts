@@ -1,5 +1,6 @@
-import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject, input } from '@angular/core';
 
+import { LanguageService } from '@core/i18n';
 import { Project, ProjectCategory } from '@core/models';
 
 import { IconComponent } from '../icon/icon.component';
@@ -19,5 +20,6 @@ export class ProjectCardComponent {
   readonly project = input.required<Project>();
   readonly category = input<ProjectCategory>();
 
+  protected readonly translations = inject(LanguageService).translations;
   protected readonly accent = computed(() => this.category()?.accent ?? 'var(--color-primary)');
 }

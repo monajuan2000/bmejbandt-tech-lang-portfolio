@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 
+import { LanguageService } from '@core/i18n';
 import { ProfileService } from '@core/services';
 import { CallToActionComponent } from '@shared/components/call-to-action/call-to-action.component';
 import { SectionHeaderComponent } from '@shared/components/section-header/section-header.component';
@@ -24,6 +25,7 @@ import { SkillGroupsComponent } from './components/skill-groups/skill-groups.com
 export class AboutPageComponent {
   private readonly profileService = inject(ProfileService);
 
+  protected readonly translations = inject(LanguageService).translations;
   protected readonly profile = this.profileService.profile;
   protected readonly skillGroups = this.profileService.skillGroups;
   protected readonly experience = this.profileService.experience;

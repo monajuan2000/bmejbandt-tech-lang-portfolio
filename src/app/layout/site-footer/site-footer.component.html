@@ -1,7 +1,9 @@
-<div class="footer container">
-  <p class="copyright">© {{ currentYear }} {{ profile().fullName }}. All rights reserved.</p>
+@let t = translations().footer;
 
-  <ul class="socials" aria-label="Social links">
+<div class="footer container">
+  <p class="copyright">© {{ currentYear }} {{ profile().fullName }}. {{ t.rights }}</p>
+
+  <ul class="socials" [attr.aria-label]="t.socialLinks">
     @for (link of profile().socialLinks; track link.platform) {
       <li>
         <a

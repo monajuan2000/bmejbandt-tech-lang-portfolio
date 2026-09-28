@@ -1,26 +1,28 @@
+@let t = translations();
+
 @if (project(); as featured) {
   <section class="section container" aria-labelledby="featured-title">
     <article class="featured glass" appReveal>
       <div class="featured__copy">
         <p class="eyebrow">
           <app-icon name="sparkles" [size]="14" />
-          Currently working on
+          {{ t.featuredProject.eyebrow }}
         </p>
         <h2 id="featured-title" class="featured__title">{{ featured.title }}</h2>
         @if (category(); as featuredCategory) {
           <p class="featured__type">{{ featured.type }} · {{ featuredCategory.name }}</p>
         }
         <p class="featured__description">{{ featured.description }}</p>
-        <app-tag-list [tags]="featured.technologies" />
+        <app-tag-list [tags]="featured.technologies" [label]="t.projectCard.technologies" />
 
         <div class="featured__actions">
           @if (featured.links?.live; as liveUrl) {
             <a class="btn btn--primary" [href]="liveUrl" target="_blank" rel="noopener noreferrer">
-              Visit project
+              {{ t.featuredProject.visitProject }}
               <app-icon name="external" [size]="18" />
             </a>
           }
-          <a class="btn btn--ghost" routerLink="/projects">See all projects</a>
+          <a class="btn btn--ghost" routerLink="/projects">{{ t.featuredProject.seeAllProjects }}</a>
         </div>
       </div>
 
