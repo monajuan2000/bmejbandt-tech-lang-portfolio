@@ -18,4 +18,5 @@ export type IconName =
   | 'moon'
   | 'server'
   | 'sparkles'
-  | 'sun';
+  | 'sun'
+  | 'whatsapp';

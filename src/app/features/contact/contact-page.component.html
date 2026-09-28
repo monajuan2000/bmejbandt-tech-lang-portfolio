@@ -9,10 +9,26 @@
       <p class="eyebrow">{{ t.preferredChannel }}</p>
       <a class="email__address" [href]="'mailto:' + currentProfile.email">{{ currentProfile.email }}</a>
     </div>
-    <button type="button" class="btn btn--ghost" (click)="copyEmail()">
-      <app-icon [name]="isEmailCopied() ? 'check' : 'copy'" [size]="18" />
-      {{ isEmailCopied() ? t.copied : t.copyEmail }}
-    </button>
+
+    <div class="email__actions">
+      <a class="btn btn--gmail" [href]="gmailUrl()" target="_blank" rel="noopener noreferrer">
+        <app-icon name="mail" [size]="18" />
+        {{ t.sendEmail }}
+      </a>
+      <a class="btn btn--whatsapp" [href]="whatsAppUrl()" target="_blank" rel="noopener noreferrer">
+        <app-icon name="whatsapp" [size]="18" />
+        {{ t.chatOnWhatsApp }}
+      </a>
+      <button
+        type="button"
+        class="icon-button email__copy-button"
+        (click)="copyEmail()"
+        [attr.aria-label]="isEmailCopied() ? t.copied : t.copyEmail"
+        [attr.title]="isEmailCopied() ? t.copied : t.copyEmail"
+      >
+        <app-icon [name]="isEmailCopied() ? 'check' : 'copy'" [size]="18" />
+      </button>
+    </div>
     <span class="visually-hidden" aria-live="polite">{{ isEmailCopied() ? t.copiedAnnouncement : '' }}</span>
   </div>
 
@@ -21,7 +37,8 @@
       <li [appReveal]="index * 80">
         <a
           class="channel glass"
-          [href]="link.url"
+          [class.channel--whatsapp]="link.platform === 'whatsapp'"
+          [href]="link.platform === 'whatsapp' ? whatsAppUrl() : link.url"
           [attr.target]="link.platform === 'email' ? null : '_blank'"
           rel="noopener noreferrer"
         >

@@ -86,6 +86,9 @@ export const EN_TRANSLATIONS = {
     description:
       "I'm open to product, engineering, and collaboration opportunities across digital experiences and platforms.",
     preferredChannel: 'Preferred channel',
+    sendEmail: 'Send with Gmail',
+    chatOnWhatsApp: 'Chat on WhatsApp',
+    emailSubject: 'Hello from your portfolio',
     copyEmail: 'Copy email',
     copied: 'Copied!',
     copiedAnnouncement: 'Email copied to clipboard',

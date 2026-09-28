@@ -1,7 +1,9 @@
 import { ProfileContent } from '@core/models';
+import { buildWhatsAppUrl } from '@core/utils';
 
-// TODO: replace the placeholder email and LinkedIn URL with your real ones.
-const EMAIL = 'hello@example.com';
+// TODO: replace the placeholder LinkedIn URL with your real one.
+const EMAIL = 'monajuan1000@gmail.com';
+const PHONE_NUMBER = '+57 324 576 9762';
 
 export const PROFILE: ProfileContent = {
   fullName: 'Juan Esteban Mona',
@@ -28,8 +30,20 @@ export const PROFILE: ProfileContent = {
     },
   ],
   email: EMAIL,
+  phoneNumber: PHONE_NUMBER,
+  whatsAppGreeting: {
+    en: "Hi Juan! I saw your portfolio and I'd like to talk with you.",
+    es: '¡Hola Juan! Vi tu portafolio y me gustaría hablar contigo.',
+  },
   socialLinks: [
     { platform: 'email', label: 'Email', handle: EMAIL, url: `mailto:${EMAIL}`, icon: 'mail' },
+    {
+      platform: 'whatsapp',
+      label: 'WhatsApp',
+      handle: PHONE_NUMBER,
+      url: buildWhatsAppUrl(PHONE_NUMBER),
+      icon: 'whatsapp',
+    },
     {
       platform: 'github',
       label: 'GitHub',
