@@ -8,9 +8,11 @@ import { IconComponent } from '@shared/components/icon/icon.component';
 import { TagListComponent } from '@shared/components/tag-list/tag-list.component';
 import { RevealDirective } from '@shared/directives/reveal.directive';
 
+import { ProjectAnnouncementComponent } from '../project-announcement/project-announcement.component';
+
 @Component({
   selector: 'app-featured-project-section',
-  imports: [NgOptimizedImage, RouterLink, IconComponent, TagListComponent, RevealDirective],
+  imports: [NgOptimizedImage, RouterLink, IconComponent, ProjectAnnouncementComponent, TagListComponent, RevealDirective],
   templateUrl: './featured-project-section.component.html',
   styleUrl: './featured-project-section.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

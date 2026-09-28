@@ -24,6 +24,16 @@ export interface ProjectImageContent {
   readonly height: number;
 }
 
+/** A time-boxed promotion attached to a project (survey, launch, event…), shown with the featured project. */
+export interface ProjectAnnouncementContent {
+  readonly badge: LocalizedText;
+  readonly title: LocalizedText;
+  readonly description: LocalizedText;
+  readonly actionLabel: LocalizedText;
+  readonly url: string;
+  readonly icon: IconName;
+}
+
 export interface ProjectContent {
   readonly id: string;
   readonly categoryId: ProjectCategoryId;
@@ -34,7 +44,9 @@ export interface ProjectContent {
   readonly links?: ProjectLinks;
   readonly image?: ProjectImageContent;
   readonly featured?: boolean;
+  readonly announcement?: ProjectAnnouncementContent;
 }
 
 export type ProjectCategory = Resolved<ProjectCategoryContent>;
+export type ProjectAnnouncement = Resolved<ProjectAnnouncementContent>;
 export type Project = Resolved<ProjectContent>;

@@ -31,6 +31,10 @@
           <img [ngSrc]="image.src" [alt]="image.alt" [width]="image.width" [height]="image.height" />
         </div>
       }
+
+      @if (featured.announcement; as announcement) {
+        <app-project-announcement class="featured__announcement" [announcement]="announcement" />
+      }
     </article>
   </section>
 }

@@ -1,0 +1,21 @@
+@let current = announcement();
+
+<aside class="announcement" aria-labelledby="announcement-title">
+  <span class="announcement__icon" aria-hidden="true">
+    <app-icon [name]="current.icon" [size]="26" />
+  </span>
+
+  <div class="announcement__body">
+    <p class="announcement__badge">
+      <span class="announcement__dot" aria-hidden="true"></span>
+      {{ current.badge }}
+    </p>
+    <h3 id="announcement-title" class="announcement__title">{{ current.title }}</h3>
+    <p class="announcement__description">{{ current.description }}</p>
+  </div>
+
+  <a class="btn btn--primary announcement__action" [href]="current.url" target="_blank" rel="noopener noreferrer">
+    {{ current.actionLabel }}
+    <app-icon name="arrow-right" [size]="18" />
+  </a>
+</aside>

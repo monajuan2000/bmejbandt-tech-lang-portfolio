@@ -1,0 +1,72 @@
+@use 'breakpoints' as bp;
+
+:host {
+  display: block;
+}
+
+// Gradient border: brand gradient on the border box, surface on the padding box.
+.announcement {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: var(--space-5);
+  align-items: center;
+  padding: var(--space-6);
+  border: 1px solid transparent;
+  border-radius: var(--radius-lg);
+  background:
+    linear-gradient(var(--color-surface-strong), var(--color-surface-strong)) padding-box,
+    var(--gradient-brand) border-box;
+  box-shadow: 0 20px 50px color-mix(in srgb, var(--color-primary) 18%, transparent);
+
+  @include bp.up(md) {
+    grid-template-columns: auto 1fr auto;
+  }
+}
+
+.announcement__icon {
+  display: grid;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  border-radius: var(--radius-md);
+  background: var(--gradient-brand);
+  color: #0b1020;
+}
+
+.announcement__body {
+  display: grid;
+  gap: var(--space-2);
+}
+
+.announcement__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  color: var(--color-accent);
+  font-size: var(--font-size-xs);
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.announcement__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--color-success);
+  animation: pulse-ring 1.8s ease-out infinite;
+}
+
+.announcement__title {
+  font-size: var(--font-size-xl);
+}
+
+.announcement__description {
+  color: var(--color-text-muted);
+}
+
+.announcement__action {
+  @include bp.down(md) {
+    grid-column: 1 / -1;
+  }
+}

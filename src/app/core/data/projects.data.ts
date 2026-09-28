@@ -72,6 +72,17 @@ export const PROJECTS: readonly ProjectContent[] = [
       height: 912,
     },
     featured: true,
+    announcement: {
+      badge: { en: 'New survey', es: 'Nueva encuesta' },
+      title: { en: 'Guatapé cultural interpretation', es: 'Interpretación cultural de Guatapé' },
+      description: {
+        en: 'Help shape how travelers discover the culture of Guatapé. Share your experience in this short survey.',
+        es: 'Ayuda a definir cómo los viajeros descubren la cultura de Guatapé. Comparte tu experiencia en esta breve encuesta.',
+      },
+      actionLabel: { en: 'Take the survey', es: 'Responder encuesta' },
+      url: 'https://monajuan2000.github.io/beatandbeach-colombia-web-app/#/surveys/guatape-cultural-interpretation',
+      icon: 'survey',
+    },
   },
   {
     id: 'operations-dashboard',
