@@ -1,0 +1,20 @@
+<ol class="timeline">
+  @for (item of items(); track item.id) {
+    <li class="entry" appReveal>
+      <span class="entry__marker" aria-hidden="true"></span>
+      <div class="entry__card glass">
+        <p class="entry__period">{{ item.period }}</p>
+        <h3 class="entry__role">{{ item.role }}</h3>
+        <p class="entry__organization">{{ item.organization }}</p>
+        <p class="entry__description">{{ item.description }}</p>
+        @if (item.highlights.length > 0) {
+          <ul class="entry__highlights">
+            @for (highlight of item.highlights; track highlight) {
+              <li>{{ highlight }}</li>
+            }
+          </ul>
+        }
+      </div>
+    </li>
+  }
+</ol>

@@ -1,0 +1,15 @@
+@if (eyebrow()) {
+  <p class="eyebrow">{{ eyebrow() }}</p>
+}
+
+@if (level() === 1) {
+  <h1 class="title title--page" [attr.id]="headingId()">{{ title() }}</h1>
+} @else {
+  <h2 class="title" [attr.id]="headingId()">{{ title() }}</h2>
+}
+
+@if (description()) {
+  <p class="lead description">{{ description() }}</p>
+}
+
+<ng-content />

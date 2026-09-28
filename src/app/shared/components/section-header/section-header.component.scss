@@ -1,0 +1,28 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: var(--space-10);
+}
+
+:host(.is-centered) {
+  align-items: center;
+  text-align: center;
+
+  .description {
+    margin-inline: auto;
+  }
+}
+
+.title {
+  font-size: var(--font-size-2xl);
+}
+
+.title--page {
+  font-size: var(--font-size-3xl);
+  letter-spacing: -0.04em;
+}
+
+.description {
+  margin-top: var(--space-4);
+}

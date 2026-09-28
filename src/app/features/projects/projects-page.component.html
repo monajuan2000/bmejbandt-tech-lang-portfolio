@@ -1,0 +1,29 @@
+<div class="page container">
+  <app-section-header
+    [level]="1"
+    eyebrow="Projects"
+    title="Selected work across disciplines"
+    description="A structured overview of the initiatives I have worked on across product, engineering, data, and platform delivery."
+  />
+
+  <div class="toolbar">
+    <app-project-filter
+      [categories]="categories()"
+      [selected]="selectedFilter()"
+      (selectedChange)="onFilterChange($event)"
+    />
+    <p class="toolbar__count" aria-live="polite">{{ resultLabel() }}</p>
+  </div>
+
+  <ul class="card-grid">
+    @for (project of visibleProjects(); track project.id) {
+      <li class="grid-item">
+        <app-project-card [project]="project" [category]="getCategory(project.categoryId)" />
+      </li>
+    } @empty {
+      <li class="empty">No projects in this discipline yet.</li>
+    }
+  </ul>
+
+  <app-call-to-action class="cta" appReveal />
+</div>

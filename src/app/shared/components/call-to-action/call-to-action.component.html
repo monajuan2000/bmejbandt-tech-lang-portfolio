@@ -1,0 +1,9 @@
+<section class="cta glass" aria-labelledby="cta-title">
+  <div class="cta__glow" aria-hidden="true"></div>
+  <h2 id="cta-title" class="cta__title">{{ title() }}</h2>
+  <p class="lead cta__description">{{ description() }}</p>
+  <a class="btn btn--primary" [routerLink]="actionPath()">
+    {{ actionLabel() }}
+    <app-icon name="arrow-right" [size]="18" />
+  </a>
+</section>

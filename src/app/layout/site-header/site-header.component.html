@@ -1,0 +1,48 @@
+<div class="bar container">
+  <a class="brand" routerLink="/home" [attr.aria-label]="profile().fullName + ' — home'">
+    <span class="brand__mark" aria-hidden="true">{{ profile().initials }}</span>
+    <span class="brand__text">
+      <span class="brand__name">{{ profile().fullName }}</span>
+      <span class="brand__tag">{{ profile().role }}</span>
+    </span>
+  </a>
+
+  <nav id="primary-navigation" class="nav" aria-label="Primary">
+    <ul class="nav__list">
+      @for (item of navigationItems; track item.path) {
+        <li>
+          <a
+            class="nav__link"
+            [routerLink]="item.path"
+            routerLinkActive="nav__link--active"
+            ariaCurrentWhenActive="page"
+          >
+            {{ item.label }}
+          </a>
+        </li>
+      }
+    </ul>
+  </nav>
+
+  <div class="actions">
+    <button
+      type="button"
+      class="icon-button"
+      (click)="themeService.toggle()"
+      [attr.aria-label]="themeService.isDark() ? 'Switch to light theme' : 'Switch to dark theme'"
+    >
+      <app-icon [name]="themeService.isDark() ? 'sun' : 'moon'" />
+    </button>
+
+    <button
+      type="button"
+      class="icon-button menu-toggle"
+      (click)="toggleMenu()"
+      aria-controls="primary-navigation"
+      [attr.aria-expanded]="isMenuOpen()"
+      [attr.aria-label]="isMenuOpen() ? 'Close menu' : 'Open menu'"
+    >
+      <app-icon [name]="isMenuOpen() ? 'close' : 'menu'" />
+    </button>
+  </div>
+</div>

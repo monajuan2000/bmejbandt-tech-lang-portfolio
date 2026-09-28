@@ -1,0 +1,60 @@
+// Button system. Works on <a> and <button>: `.btn .btn--primary`, `.btn .btn--ghost`.
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  min-height: 48px;
+  padding: 0 var(--space-6);
+  border: 1px solid transparent;
+  border-radius: var(--radius-pill);
+  font-weight: 600;
+  font-size: var(--font-size-sm);
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+  cursor: pointer;
+  transition:
+    transform var(--duration-base) var(--ease-out),
+    box-shadow var(--duration-base) var(--ease-out),
+    background var(--duration-base) ease,
+    border-color var(--duration-base) ease;
+
+  app-icon {
+    transition: translate var(--duration-base) var(--ease-out);
+  }
+
+  &:hover {
+    transform: translateY(-2px);
+
+    app-icon {
+      translate: 3px 0;
+    }
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+}
+
+.btn--primary {
+  background: linear-gradient(135deg, var(--color-primary-strong), #8b5cf6);
+  color: var(--color-on-primary);
+  box-shadow: 0 12px 30px color-mix(in srgb, var(--color-primary-strong) 35%, transparent);
+
+  &:hover {
+    box-shadow: 0 18px 40px color-mix(in srgb, var(--color-primary-strong) 45%, transparent);
+  }
+}
+
+.btn--ghost {
+  background: var(--color-surface);
+  border-color: var(--color-border-strong);
+  color: var(--color-text);
+  backdrop-filter: blur(var(--blur-glass));
+  -webkit-backdrop-filter: blur(var(--blur-glass));
+
+  &:hover {
+    background: var(--color-surface-hover);
+  }
+}

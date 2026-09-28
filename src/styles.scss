@@ -1,25 +1,6 @@
-/* You can add global styles to this file, and also import other style files */
-
-:root {
-    --primary-white: #ffffff;
-    --main-blue: #1e3a8a;
-    --accent-gold: #d4af37;
-    --soft-gray: #f4f7f6;
-    --text-dark: #1f2937;
-}
-
-html,
-body {
-    margin: 0;
-    min-height: 100%;
-    font-family: Roboto, "Helvetica Neue", sans-serif;
-    background: #070b16;
-}
-
-body {
-    overflow-x: hidden;
-}
-
-* {
-    box-sizing: border-box;
-}
+// Global stylesheet entry point. Keep rules in the partials under src/styles/.
+@use 'styles/tokens';
+@use 'styles/base';
+@use 'styles/utilities';
+@use 'styles/buttons';
+@use 'styles/motion';

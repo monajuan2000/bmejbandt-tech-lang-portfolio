@@ -1,0 +1,21 @@
+<section class="section container" aria-labelledby="services-title">
+  <app-section-header
+    appReveal
+    headingId="services-title"
+    eyebrow="What I do"
+    title="Technology, engineering and language"
+    description="A blend of product engineering and communication skills to help teams ship with clarity."
+  />
+
+  <ul class="card-grid">
+    @for (service of services(); track service.id; let index = $index) {
+      <li class="service glass" [appReveal]="index * 80">
+        <span class="service__icon">
+          <app-icon [name]="service.icon" [size]="24" />
+        </span>
+        <h3 class="service__title">{{ service.title }}</h3>
+        <p class="service__description">{{ service.description }}</p>
+      </li>
+    }
+  </ul>
+</section>

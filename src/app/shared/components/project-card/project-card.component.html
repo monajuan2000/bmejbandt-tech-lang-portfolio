@@ -1,0 +1,33 @@
+@let currentProject = project();
+
+<article class="card glass">
+  <div class="card__meta">
+    @if (category(); as projectCategory) {
+      <span class="card__category">
+        <app-icon [name]="projectCategory.icon" [size]="16" />
+        {{ projectCategory.name }}
+      </span>
+    }
+    <span class="card__type">{{ currentProject.type }}</span>
+  </div>
+
+  <h3 class="card__title">{{ currentProject.title }}</h3>
+  <p class="card__description">{{ currentProject.description }}</p>
+
+  <app-tag-list class="card__tags" [tags]="currentProject.technologies" />
+
+  @if (currentProject.links; as links) {
+    <div class="card__links">
+      @if (links.live) {
+        <a class="card__link" [href]="links.live" target="_blank" rel="noopener noreferrer">
+          Live site <app-icon name="external" [size]="16" />
+        </a>
+      }
+      @if (links.repository) {
+        <a class="card__link" [href]="links.repository" target="_blank" rel="noopener noreferrer">
+          Source <app-icon name="github" [size]="16" />
+        </a>
+      }
+    </div>
+  }
+</article>

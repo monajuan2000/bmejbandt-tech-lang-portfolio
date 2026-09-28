@@ -1,0 +1,21 @@
+/** Names of the icons registered in `shared/components/icon/icon.registry.ts`. */
+export type IconName =
+  | 'arrow-right'
+  | 'chart'
+  | 'check'
+  | 'close'
+  | 'cloud'
+  | 'code'
+  | 'copy'
+  | 'external'
+  | 'github'
+  | 'globe'
+  | 'layers'
+  | 'linkedin'
+  | 'mail'
+  | 'menu'
+  | 'monitor'
+  | 'moon'
+  | 'server'
+  | 'sparkles'
+  | 'sun';

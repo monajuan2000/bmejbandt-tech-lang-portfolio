@@ -1,0 +1,32 @@
+:host {
+  display: block;
+}
+
+.cta {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-5);
+  padding: clamp(var(--space-8), 6vw, var(--space-16)) var(--space-6);
+  overflow: hidden;
+  text-align: center;
+}
+
+.cta__glow {
+  position: absolute;
+  inset: -40% -10% auto;
+  height: 120%;
+  background: radial-gradient(closest-side, color-mix(in srgb, var(--color-primary) 28%, transparent), transparent);
+  pointer-events: none;
+}
+
+.cta__title {
+  position: relative;
+  font-size: var(--font-size-2xl);
+}
+
+.cta__description {
+  position: relative;
+  margin-inline: auto;
+}

@@ -1,156 +1,30 @@
 :host {
-    display: block;
-    min-height: 100vh;
-    position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 100dvh;
 }
 
-.background-video {
-    position: fixed;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    z-index: 0;
-    pointer-events: none;
-    filter: brightness(0.8) contrast(1.05) saturate(1.2);
+main {
+  flex: 1;
+  outline: none;
 }
 
-.main-toolbar,
-.main-content,
-.footer {
-    position: relative;
-    z-index: 1;
-}
+.skip-link {
+  position: fixed;
+  top: var(--space-2);
+  left: var(--space-2);
+  z-index: 200;
+  padding: var(--space-2) var(--space-4);
+  border: 0;
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  background: var(--color-primary-strong);
+  color: var(--color-on-primary);
+  font-weight: 600;
+  translate: 0 -200%;
+  transition: translate var(--duration-base) var(--ease-out);
 
-.main-toolbar {
-    background: rgba(10, 17, 32, 0.72) !important;
-    backdrop-filter: blur(14px);
-    color: #f8fafc;
-    border-bottom: 1px solid rgba(212, 175, 55, 0.6);
-    height: 86px;
-    box-shadow: 0 12px 30px rgba(15, 23, 42, 0.18);
-
-    .toolbar-content {
-        display: flex;
-        align-items: center;
-        width: 100%;
-        padding: 0 24px;
-    }
-
-    .brand-block {
-        display: flex;
-        align-items: baseline;
-        gap: 12px;
-        min-width: 0;
-    }
-
-    .logo {
-        font-family: 'Poppins', sans-serif;
-        font-weight: 800;
-        font-size: clamp(1.2rem, 2vw, 1.7rem);
-        letter-spacing: 0.08em;
-        text-transform: uppercase;
-        color: #f8fafc;
-        white-space: nowrap;
-    }
-
-    .brand-tag {
-        font-size: 0.7rem;
-        letter-spacing: 0.14em;
-        text-transform: uppercase;
-        color: #d4af37;
-        font-weight: 700;
-        opacity: 0.9;
-    }
-
-    .spacer {
-        flex: 1 1 auto;
-    }
-
-    .menu-button {
-        display: none;
-        color: #f8fafc;
-    }
-
-    .nav-links {
-        display: flex;
-        align-items: center;
-        gap: 6px;
-
-        a {
-            color: #edf2ff;
-            font-weight: 600;
-            margin: 0 4px;
-            padding: 8px 14px !important;
-            border-radius: 999px;
-            transition: all 0.2s ease;
-            text-transform: uppercase;
-            letter-spacing: 0.04em;
-            font-size: 0.76rem;
-
-            &:hover {
-                background: rgba(255, 255, 255, 0.08);
-                color: #ffffff;
-            }
-
-            &.active-link {
-                background: linear-gradient(135deg, rgba(212, 175, 55, 0.2), rgba(79, 70, 229, 0.25));
-                color: #f8fafc !important;
-                box-shadow: inset 0 0 0 1px rgba(212, 175, 55, 0.35);
-                transform: translateY(-1px);
-            }
-        }
-
-        &.mobile-nav {
-            display: none;
-            flex-direction: column;
-            padding: 8px 0 14px;
-            background: rgba(10, 17, 32, 0.9);
-            border-top: 1px solid rgba(212, 175, 55, 0.35);
-        }
-
-        &.desktop-nav {
-            display: flex;
-        }
-    }
-
-    @media (max-width: 768px) {
-        height: auto;
-        padding-bottom: 0;
-
-        .toolbar-content {
-            padding: 12px 16px;
-        }
-
-        .brand-tag {
-            display: none;
-        }
-
-        .nav-links.desktop-nav {
-            display: none;
-        }
-
-        .menu-button {
-            display: inline-flex;
-        }
-
-        .nav-links.mobile-nav {
-            display: flex;
-            width: 100%;
-            padding: 0 12px 12px;
-        }
-    }
-}
-
-.main-content {
-    min-height: calc(100vh - 128px);
-    background: rgba(17, 17, 17, 0.18);
-}
-
-.footer {
-    background: rgba(30, 58, 138, 0.92);
-    color: var(--primary-white);
-    text-align: center;
-    padding: 20px 0;
-    border-top: 4px solid var(--accent-gold);
+  &:focus-visible {
+    translate: 0 0;
+  }
 }

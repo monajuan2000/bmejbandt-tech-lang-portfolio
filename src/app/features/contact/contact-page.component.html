@@ -1,0 +1,42 @@
+@let currentProfile = profile();
+
+<div class="page container">
+  <app-section-header
+    [level]="1"
+    eyebrow="Contact"
+    title="Let's build something meaningful."
+    description="I'm open to product, engineering, and collaboration opportunities across digital experiences and platforms."
+  />
+
+  <div class="email glass" appReveal>
+    <div class="email__copy">
+      <p class="eyebrow">Preferred channel</p>
+      <a class="email__address" [href]="'mailto:' + currentProfile.email">{{ currentProfile.email }}</a>
+    </div>
+    <button type="button" class="btn btn--ghost" (click)="copyEmail()">
+      <app-icon [name]="isEmailCopied() ? 'check' : 'copy'" [size]="18" />
+      {{ isEmailCopied() ? 'Copied!' : 'Copy email' }}
+    </button>
+    <span class="visually-hidden" aria-live="polite">{{ isEmailCopied() ? 'Email copied to clipboard' : '' }}</span>
+  </div>
+
+  <ul class="card-grid channels">
+    @for (link of currentProfile.socialLinks; track link.platform; let index = $index) {
+      <li [appReveal]="index * 80">
+        <a
+          class="channel glass"
+          [href]="link.url"
+          [attr.target]="link.platform === 'email' ? null : '_blank'"
+          rel="noopener noreferrer"
+        >
+          <span class="channel__icon"><app-icon [name]="link.icon" [size]="22" /></span>
+          <span class="channel__body">
+            <span class="channel__label">{{ link.label }}</span>
+            <span class="channel__handle">{{ link.handle }}</span>
+          </span>
+          <app-icon class="channel__arrow" name="arrow-right" [size]="18" />
+        </a>
+      </li>
+    }
+  </ul>
+</div>

@@ -1,0 +1,34 @@
+<section class="section container" aria-labelledby="categories-title">
+  <app-section-header
+    appReveal
+    headingId="categories-title"
+    eyebrow="Disciplines"
+    title="Work across the whole stack"
+    description="Pick a discipline to jump straight into the related projects."
+  />
+
+  <ul class="card-grid">
+    @for (category of categories(); track category.id; let index = $index) {
+      <li [appReveal]="index * 70">
+        <a
+          class="category glass"
+          routerLink="/projects"
+          [queryParams]="{ category: category.id }"
+          [style.--category-accent]="category.accent"
+        >
+          <span class="category__icon">
+            <app-icon [name]="category.icon" [size]="22" />
+          </span>
+          <span class="category__body">
+            <span class="category__name">{{ category.name }}</span>
+            <span class="category__description">{{ category.description }}</span>
+          </span>
+          <span class="category__count">
+            {{ category.projectCount }} {{ category.projectCount === 1 ? 'project' : 'projects' }}
+            <app-icon name="arrow-right" [size]="16" />
+          </span>
+        </a>
+      </li>
+    }
+  </ul>
+</section>

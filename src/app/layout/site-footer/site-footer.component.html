@@ -1,0 +1,19 @@
+<div class="footer container">
+  <p class="copyright">© {{ currentYear }} {{ profile().fullName }}. All rights reserved.</p>
+
+  <ul class="socials" aria-label="Social links">
+    @for (link of profile().socialLinks; track link.platform) {
+      <li>
+        <a
+          class="icon-button"
+          [href]="link.url"
+          [attr.aria-label]="link.label"
+          [attr.target]="link.platform === 'email' ? null : '_blank'"
+          rel="noopener noreferrer"
+        >
+          <app-icon [name]="link.icon" [size]="18" />
+        </a>
+      </li>
+    }
+  </ul>
+</div>

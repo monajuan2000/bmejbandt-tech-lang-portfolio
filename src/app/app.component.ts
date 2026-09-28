@@ -1,78 +1,29 @@
-import { CommonModule } from '@angular/common';
-import { Component, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
-import { MatCardModule } from '@angular/material/card';
-import { MatGridListModule } from '@angular/material/grid-list';
-import { MatIconModule } from '@angular/material/icon';
-import { MatListModule } from '@angular/material/list';
-import { MatMenuModule } from '@angular/material/menu';
-import { MatSidenavModule } from '@angular/material/sidenav';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { RouterModule } from '@angular/router';
+import { ChangeDetectionStrategy, Component, ElementRef, viewChild } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
 
+import { BackgroundVideoComponent, SiteFooterComponent, SiteHeaderComponent } from '@layout/index';
+
+/** Application shell: persistent layout around the routed page. */
 @Component({
   selector: 'app-root',
-  standalone: true,
-  imports: [
-    CommonModule,
-    MatIconModule,
-    MatToolbarModule,
-    MatMenuModule,
-    MatGridListModule,
-    MatSidenavModule,
-    MatListModule,
-    MatCardModule,
-    RouterModule,
-  ],
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss'],
+  imports: [RouterOutlet, BackgroundVideoComponent, SiteHeaderComponent, SiteFooterComponent],
+  template: `
+    <!-- A button, not an anchor: "#main-content" would be parsed as a route by hash routing. -->
+    <button type="button" class="skip-link" (click)="skipToContent()">Skip to content</button>
+    <app-background-video />
+    <app-site-header />
+    <main #mainContent tabindex="-1">
+      <router-outlet />
+    </main>
+    <app-site-footer />
+  `,
+  styleUrl: './app.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AppComponent implements AfterViewInit {
-  @ViewChild('bgVideo', { static: false }) bgVideo?: ElementRef<HTMLVideoElement>;
-  title = 'bmejbandt-tech-lang-portfolio';
-  mobileMenuOpen = false;
+export class AppComponent {
+  private readonly mainContent = viewChild.required<ElementRef<HTMLElement>>('mainContent');
 
-  ngAfterViewInit(): void {
-    const v = this.bgVideo?.nativeElement;
-    if (!v) return;
-
-    const tryPlay = async () => {
-      try {
-        v.muted = true;
-        v.autoplay = true;
-        if (v.readyState < 3) {
-          await new Promise<void>((resolve) => {
-            const onCanPlay = () => {
-              v.removeEventListener('canplay', onCanPlay);
-              resolve();
-            };
-            v.addEventListener('canplay', onCanPlay);
-            setTimeout(resolve, 2000);
-          });
-        }
-        await v.play();
-        cleanupInteractionListeners();
-      } catch {
-        // allow user interaction to trigger play
-      }
-    };
-
-    const onUserInteract = () => tryPlay();
-    const onVisibility = () => { if (document.visibilityState === 'visible') tryPlay(); };
-    const cleanupInteractionListeners = () => {
-      document.removeEventListener('pointerdown', onUserInteract);
-      document.removeEventListener('touchstart', onUserInteract);
-      document.removeEventListener('click', onUserInteract);
-      document.removeEventListener('visibilitychange', onVisibility);
-      window.removeEventListener('focus', onUserInteract);
-    };
-
-    tryPlay();
-    document.addEventListener('pointerdown', onUserInteract, { passive: true });
-    document.addEventListener('touchstart', onUserInteract, { passive: true });
-    document.addEventListener('click', onUserInteract, { passive: true });
-    document.addEventListener('visibilitychange', onVisibility);
-    window.addEventListener('focus', onUserInteract);
-
-    v.addEventListener('error', () => { });
+  protected skipToContent(): void {
+    this.mainContent().nativeElement.focus();
   }
 }

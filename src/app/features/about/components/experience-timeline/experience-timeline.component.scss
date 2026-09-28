@@ -1,0 +1,66 @@
+.timeline {
+  position: relative;
+  display: grid;
+  gap: var(--space-6);
+  margin: 0;
+  padding: 0 0 0 var(--space-8);
+  list-style: none;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: var(--space-2) auto var(--space-2) 7px;
+    width: 2px;
+    background: linear-gradient(180deg, var(--color-accent), var(--color-primary), transparent);
+  }
+}
+
+.entry {
+  position: relative;
+}
+
+.entry__marker {
+  position: absolute;
+  top: var(--space-6);
+  left: calc(var(--space-8) * -1);
+  width: 16px;
+  height: 16px;
+  border: 3px solid var(--color-bg);
+  border-radius: 50%;
+  background: var(--gradient-brand);
+}
+
+.entry__card {
+  display: grid;
+  gap: var(--space-2);
+  padding: var(--space-6);
+}
+
+.entry__period {
+  color: var(--color-accent);
+  font-size: var(--font-size-xs);
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.entry__role {
+  font-size: var(--font-size-xl);
+}
+
+.entry__organization {
+  color: var(--color-text-subtle);
+  font-weight: 600;
+}
+
+.entry__description {
+  color: var(--color-text-muted);
+}
+
+.entry__highlights {
+  display: grid;
+  gap: var(--space-2);
+  padding-left: var(--space-5);
+  color: var(--color-text-muted);
+  list-style: disc;
+}

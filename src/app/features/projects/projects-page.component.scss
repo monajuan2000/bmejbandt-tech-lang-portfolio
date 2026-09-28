@@ -1,0 +1,39 @@
+:host {
+  display: block;
+}
+
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  margin-bottom: var(--space-8);
+}
+
+.toolbar__count {
+  color: var(--color-text-subtle);
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+}
+
+// Newly rendered cards animate in whenever the filter changes.
+.grid-item {
+  animation: fade-up var(--duration-slow) var(--ease-out) both;
+
+  @for $index from 1 through 12 {
+    &:nth-child(#{$index}) {
+      animation-delay: #{($index - 1) * 50}ms;
+    }
+  }
+}
+
+.empty {
+  grid-column: 1 / -1;
+  color: var(--color-text-subtle);
+  text-align: center;
+}
+
+.cta {
+  margin-top: var(--space-section);
+}

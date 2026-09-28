@@ -1,0 +1,15 @@
+<div class="filter" role="group" aria-label="Filter projects by discipline">
+  <button type="button" class="chip" [attr.aria-pressed]="selected() === 'all'" (click)="select('all')">All</button>
+
+  @for (category of categories(); track category.id) {
+    <button
+      type="button"
+      class="chip"
+      [style.--chip-accent]="category.accent"
+      [attr.aria-pressed]="selected() === category.id"
+      (click)="select(category.id)"
+    >
+      {{ category.name }}
+    </button>
+  }
+</div>

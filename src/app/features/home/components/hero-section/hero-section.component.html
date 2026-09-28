@@ -1,0 +1,32 @@
+@let currentProfile = profile();
+
+<section class="hero container" aria-labelledby="hero-title">
+  <p class="availability">
+    <span class="availability__dot" aria-hidden="true"></span>
+    {{ currentProfile.availability }}
+  </p>
+
+  <h1 id="hero-title" class="hero__title">
+    {{ currentProfile.headline }}
+    <span class="text-gradient">{{ currentProfile.headlineHighlight }}</span>
+  </h1>
+
+  <p class="lead hero__lead">{{ currentProfile.summary }}</p>
+
+  <div class="hero__actions">
+    <a class="btn btn--primary" routerLink="/projects">
+      Explore projects
+      <app-icon name="arrow-right" [size]="18" />
+    </a>
+    <a class="btn btn--ghost" routerLink="/contact">Get in touch</a>
+  </div>
+
+  <dl class="stats">
+    @for (stat of stats(); track stat.label) {
+      <div class="stat glass">
+        <dt class="stat__label">{{ stat.label }}</dt>
+        <dd class="stat__value">{{ stat.value }}</dd>
+      </div>
+    }
+  </dl>
+</section>

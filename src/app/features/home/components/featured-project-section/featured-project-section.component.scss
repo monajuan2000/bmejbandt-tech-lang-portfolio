@@ -1,0 +1,67 @@
+@use 'breakpoints' as bp;
+
+:host {
+  display: block;
+}
+
+.featured {
+  display: grid;
+  gap: var(--space-8);
+  align-items: center;
+  padding: clamp(var(--space-6), 4vw, var(--space-12));
+  overflow: hidden;
+
+  @include bp.up(lg) {
+    grid-template-columns: 1.25fr 1fr;
+  }
+}
+
+.featured__copy {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.featured__title {
+  font-size: var(--font-size-2xl);
+}
+
+.featured__type {
+  color: var(--color-text-subtle);
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+}
+
+.featured__description {
+  color: var(--color-text-muted);
+  font-size: var(--font-size-lg);
+}
+
+.featured__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+  margin-top: var(--space-4);
+}
+
+.featured__visual {
+  display: grid;
+  place-items: center;
+  padding: var(--space-8);
+  border-radius: var(--radius-lg);
+  background:
+    radial-gradient(circle at 30% 20%, color-mix(in srgb, var(--color-accent) 30%, transparent), transparent 60%),
+    radial-gradient(circle at 70% 80%, color-mix(in srgb, var(--color-primary) 30%, transparent), transparent 60%);
+
+  img {
+    width: min(100%, 320px);
+    height: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 24px 40px rgba(2, 6, 23, 0.35));
+    transition: transform var(--duration-slow) var(--ease-out);
+  }
+
+  &:hover img {
+    transform: scale(1.04) rotate(-2deg);
+  }
+}
