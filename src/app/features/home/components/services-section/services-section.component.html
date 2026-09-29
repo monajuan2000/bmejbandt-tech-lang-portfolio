@@ -11,8 +11,8 @@
 
   <ul class="card-grid">
     @for (service of services(); track service.id; let index = $index) {
-      <li class="service glass" [appReveal]="index * 80">
-        <span class="service__icon">
+      <li class="service glass hover-lift" [appReveal]="index * 80">
+        <span class="icon-tile service__icon">
           <app-icon [name]="service.icon" [size]="24" />
         </span>
         <h3 class="service__title">{{ service.title }}</h3>

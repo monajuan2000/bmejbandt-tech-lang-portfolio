@@ -1,3 +1,4 @@
+export * from './inject-translations';
 export * from './language.config';
 export * from './language.service';
 export * from './resolve-localized';

@@ -23,11 +23,12 @@ src/
 │   │   ├── models/           # TypeScript interfaces and domain types
 │   │   ├── services/         # Signal-based state and data access (ProjectService, ThemeService…)
 │   │   ├── strategies/       # Router strategies (translated page titles)
-│   │   └── utils/            # Framework-free helpers (storage, view transitions)
+│   │   └── utils/            # Framework-free helpers (storage, contact links, URLs, unique ids, view transitions)
 │   ├── layout/               # Persistent shell pieces: header, footer, language switcher, background video
 │   ├── shared/               # Reusable, presentation-only UI
 │   │   ├── components/       # icon, section-header, project-card, tag-list, call-to-action
-│   │   └── directives/       # reveal (scroll-in animation)
+│   │   ├── directives/       # reveal (scroll-in animation), external-link (safe new-tab links)
+│   │   └── index.ts          # Public API: import from '@shared'
 │   ├── features/             # One folder per route, lazy loaded
 │   │   ├── home/             # home-page + components/ (hero, featured project, services, categories)
 │   │   ├── projects/         # projects-page + components/ (project-filter)
@@ -37,15 +38,16 @@ src/
 │   ├── app.component.ts      # Shell: header + <router-outlet> + footer
 │   ├── app.config.ts         # Providers (router features, title strategy)
 │   └── app.routes.ts         # Top-level lazy routes → each feature's *.routes.ts
-└── styles/                   # Global design system (tokens, base, utilities, buttons, motion)
+└── styles/                   # Global design system (tokens, mixins, base, utilities, buttons, motion)
 ```
 
 ### Dependency rules
 
 - `features` may import from `core`, `shared` and `layout`; features never import from each other.
-- `shared` may import from `core/models` and `core/i18n` only; it has no knowledge of data services or routes.
+- `shared` may import from `core/models`, `core/i18n` and `core/utils` only; it has no knowledge of data services or routes.
 - `core` never imports from `features`, `layout` or `shared`.
-- Use the path aliases `@core/*`, `@shared/*`, `@layout/*` and `@features/*` instead of long relative paths.
+- Use the path aliases instead of long relative paths: `@core/<area>`, `@features/*`, and the barrels `@shared` and `@layout`.
+  Inside `shared/` itself, use relative imports to avoid circular barrels.
 
 ### Conventions
 
@@ -56,6 +58,19 @@ src/
 - Styles use design tokens (`var(--color-*)`, `var(--space-*)`); never hardcode colors in components.
   Breakpoints come from `src/styles/_breakpoints.scss`: `@use 'breakpoints' as bp;` → `@include bp.down(md) { … }`.
 - Content changes live in `src/app/core/data/`; components render whatever the services expose.
+
+### Reuse before you write
+
+| Need | Use |
+| --- | --- |
+| UI copy in a component | `protected readonly translations = injectTranslations();` |
+| Link that may be external | `<a [appExternalLink]="url">` (adds `target`/`rel` only for http(s)) |
+| Contact URLs (Gmail, WhatsApp, mailto) | `ProfileService.profile()` → `gmailComposeUrl`, `whatsAppUrl`, `socialLinks[].url` |
+| aria id in a reusable component | `createUniqueId(prefix)` from `@core/utils` |
+| Translucent card | `.glass` · hover lift: `.hover-lift` (tint with `--lift-accent`) |
+| Icon in a tinted square | `.icon-tile` (tint with `--tile-color`) |
+| Frosted blur in SCSS | `@use 'mixins' as mx;` → `@include mx.frosted;` |
+| Buttons | `.btn` + `--primary` / `--ghost` / `--gmail` / `--whatsapp` |
 
 ## Internationalization
 

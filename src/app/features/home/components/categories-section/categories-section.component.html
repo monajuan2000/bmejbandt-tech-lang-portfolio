@@ -13,12 +13,12 @@
     @for (category of categories(); track category.id; let index = $index) {
       <li [appReveal]="index * 70">
         <a
-          class="category glass"
+          class="category glass hover-lift"
           routerLink="/projects"
           [queryParams]="{ category: category.id }"
           [style.--category-accent]="category.accent"
         >
-          <span class="category__icon">
+          <span class="icon-tile category__icon">
             <app-icon [name]="category.icon" [size]="22" />
           </span>
           <span class="category__body">

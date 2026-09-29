@@ -1,5 +1,4 @@
 import { ProfileContent } from '@core/models';
-import { buildWhatsAppUrl } from '@core/utils';
 
 // TODO: replace the placeholder LinkedIn URL with your real one.
 const EMAIL = 'monajuan1000@gmail.com';
@@ -30,30 +29,25 @@ export const PROFILE: ProfileContent = {
     },
   ],
   email: EMAIL,
+  emailSubject: { en: 'Hello from your portfolio', es: 'Hola desde tu portafolio' },
   phoneNumber: PHONE_NUMBER,
   whatsAppGreeting: {
     en: "Hi Juan! I saw your portfolio and I'd like to talk with you.",
     es: '¡Hola Juan! Vi tu portafolio y me gustaría hablar contigo.',
   },
   socialLinks: [
-    { platform: 'email', label: 'Email', handle: EMAIL, url: `mailto:${EMAIL}`, icon: 'mail' },
-    {
-      platform: 'whatsapp',
-      label: 'WhatsApp',
-      handle: PHONE_NUMBER,
-      url: buildWhatsAppUrl(PHONE_NUMBER),
-      icon: 'whatsapp',
-    },
+    { platform: 'email', label: { en: 'Email', es: 'Correo' }, handle: EMAIL, icon: 'mail' },
+    { platform: 'whatsapp', label: { en: 'WhatsApp', es: 'WhatsApp' }, handle: PHONE_NUMBER, icon: 'whatsapp' },
     {
       platform: 'github',
-      label: 'GitHub',
+      label: { en: 'GitHub', es: 'GitHub' },
       handle: '@monajuan2000',
       url: 'https://github.com/monajuan2000',
       icon: 'github',
     },
     {
       platform: 'linkedin',
-      label: 'LinkedIn',
+      label: { en: 'LinkedIn', es: 'LinkedIn' },
       handle: 'Juan Esteban Mona',
       url: 'https://www.linkedin.com',
       icon: 'linkedin',

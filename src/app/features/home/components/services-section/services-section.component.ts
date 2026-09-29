@@ -1,10 +1,8 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 
-import { LanguageService } from '@core/i18n';
+import { injectTranslations } from '@core/i18n';
 import { ProfileService } from '@core/services';
-import { IconComponent } from '@shared/components/icon/icon.component';
-import { SectionHeaderComponent } from '@shared/components/section-header/section-header.component';
-import { RevealDirective } from '@shared/directives/reveal.directive';
+import { IconComponent, RevealDirective, SectionHeaderComponent } from '@shared';
 
 @Component({
   selector: 'app-services-section',
@@ -15,5 +13,5 @@ import { RevealDirective } from '@shared/directives/reveal.directive';
 })
 export class ServicesSectionComponent {
   protected readonly services = inject(ProfileService).services;
-  protected readonly translations = inject(LanguageService).translations;
+  protected readonly translations = injectTranslations();
 }

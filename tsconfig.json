@@ -21,7 +21,9 @@
     "paths": {
       "@core/*": ["./src/app/core/*"],
       "@features/*": ["./src/app/features/*"],
+      "@layout": ["./src/app/layout/index.ts"],
       "@layout/*": ["./src/app/layout/*"],
+      "@shared": ["./src/app/shared/index.ts"],
       "@shared/*": ["./src/app/shared/*"]
     }
   },

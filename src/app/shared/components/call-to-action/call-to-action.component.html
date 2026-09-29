@@ -1,6 +1,6 @@
-<section class="cta glass" aria-labelledby="cta-title">
+<section class="cta glass" [attr.aria-labelledby]="titleId">
   <div class="cta__glow" aria-hidden="true"></div>
-  <h2 id="cta-title" class="cta__title">{{ resolvedTitle() }}</h2>
+  <h2 [id]="titleId" class="cta__title">{{ resolvedTitle() }}</h2>
   <p class="lead cta__description">{{ resolvedDescription() }}</p>
   <a class="btn btn--primary" [routerLink]="actionPath()">
     {{ resolvedActionLabel() }}

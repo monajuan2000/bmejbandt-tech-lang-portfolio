@@ -3,11 +3,12 @@ import { LocalizedText, Resolved } from './localization.model';
 
 export type SocialPlatform = 'email' | 'whatsapp' | 'github' | 'linkedin';
 
-export interface SocialLink {
+export interface SocialLinkContent {
   readonly platform: SocialPlatform;
-  readonly label: string;
+  readonly label: LocalizedText;
   readonly handle: string;
-  readonly url: string;
+  /** Required for web profiles. Omit for `email`/`whatsapp`: ProfileService builds those from the profile. */
+  readonly url?: string;
   readonly icon: IconName;
 }
 
@@ -21,11 +22,22 @@ export interface ProfileContent {
   readonly summary: LocalizedText;
   readonly about: readonly LocalizedText[];
   readonly email: string;
+  /** Subject pre-filled in emails started from the portfolio. */
+  readonly emailSubject: LocalizedText;
   /** International format, e.g. "+57 324 576 9762". */
   readonly phoneNumber: string;
-  /** Pre-filled text for chats started from the portfolio. */
+  /** Text pre-filled in WhatsApp chats started from the portfolio. */
   readonly whatsAppGreeting: LocalizedText;
-  readonly socialLinks: readonly SocialLink[];
+  readonly socialLinks: readonly SocialLinkContent[];
 }
 
-export type Profile = Resolved<ProfileContent>;
+export interface SocialLink extends Omit<Resolved<SocialLinkContent>, 'url'> {
+  readonly url: string;
+}
+
+/** Resolved profile with every contact URL built and ready to render. */
+export interface Profile extends Omit<Resolved<ProfileContent>, 'socialLinks'> {
+  readonly socialLinks: readonly SocialLink[];
+  readonly gmailComposeUrl: string;
+  readonly whatsAppUrl: string;
+}

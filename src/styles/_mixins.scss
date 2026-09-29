@@ -1,0 +1,7 @@
+// Shared SCSS mixins. Usage in components: `@use 'mixins' as mx;` then `@include mx.frosted;`.
+
+/// Frosted-glass blur behind translucent surfaces (includes the Safari prefix).
+@mixin frosted($blur: var(--blur-glass)) {
+  backdrop-filter: blur($blur) saturate(140%);
+  -webkit-backdrop-filter: blur($blur) saturate(140%);
+}

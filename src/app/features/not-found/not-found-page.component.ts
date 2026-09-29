@@ -1,8 +1,8 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
-import { LanguageService } from '@core/i18n';
-import { IconComponent } from '@shared/components/icon/icon.component';
+import { injectTranslations } from '@core/i18n';
+import { IconComponent } from '@shared';
 
 @Component({
   selector: 'app-not-found-page',
@@ -44,5 +44,5 @@ import { IconComponent } from '@shared/components/icon/icon.component';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NotFoundPageComponent {
-  protected readonly translations = inject(LanguageService).translations;
+  protected readonly translations = injectTranslations();
 }

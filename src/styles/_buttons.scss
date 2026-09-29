@@ -1,3 +1,5 @@
+@use 'mixins' as mx;
+
 // Button system. Works on <a> and <button>: `.btn .btn--primary`, `.btn .btn--ghost`.
 
 .btn {
@@ -79,8 +81,7 @@
   background: var(--color-surface);
   border-color: var(--color-border-strong);
   color: var(--color-text);
-  backdrop-filter: blur(var(--blur-glass));
-  -webkit-backdrop-filter: blur(var(--blur-glass));
+  @include mx.frosted;
 
   &:hover {
     background: var(--color-surface-hover);

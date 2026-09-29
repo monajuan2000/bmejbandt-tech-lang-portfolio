@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 
 import { Experience } from '@core/models';
-import { RevealDirective } from '@shared/directives/reveal.directive';
+import { RevealDirective } from '@shared';
 
 @Component({
   selector: 'app-experience-timeline',

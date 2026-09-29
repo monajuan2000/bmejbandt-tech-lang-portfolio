@@ -88,7 +88,6 @@ export const EN_TRANSLATIONS = {
     preferredChannel: 'Preferred channel',
     sendEmail: 'Send with Gmail',
     chatOnWhatsApp: 'Chat on WhatsApp',
-    emailSubject: 'Hello from your portfolio',
     copyEmail: 'Copy email',
     copied: 'Copied!',
     copiedAnnouncement: 'Email copied to clipboard',

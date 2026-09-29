@@ -1,7 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
-import { CallToActionComponent } from '@shared/components/call-to-action/call-to-action.component';
-import { RevealDirective } from '@shared/directives/reveal.directive';
+import { CallToActionComponent, RevealDirective } from '@shared';
 
 import { CategoriesSectionComponent } from './components/categories-section/categories-section.component';
 import { FeaturedProjectSectionComponent } from './components/featured-project-section/featured-project-section.component';

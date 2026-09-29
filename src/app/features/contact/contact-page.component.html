@@ -8,7 +8,7 @@
     <div class="email__info">
       <p class="eyebrow email__eyebrow">{{ t.preferredChannel }}</p>
       <div class="email__address-row">
-        <a class="email__address" [href]="'mailto:' + currentProfile.email">{{ currentProfile.email }}</a>
+        <a class="email__address" [appExternalLink]="'mailto:' + currentProfile.email">{{ currentProfile.email }}</a>
         <button
           type="button"
           class="icon-button email__copy-button"
@@ -23,11 +23,11 @@
     </div>
 
     <div class="email__actions">
-      <a class="btn btn--gmail" [href]="gmailUrl()" target="_blank" rel="noopener noreferrer">
+      <a class="btn btn--gmail" [appExternalLink]="currentProfile.gmailComposeUrl">
         <app-icon name="mail" [size]="18" />
         {{ t.sendEmail }}
       </a>
-      <a class="btn btn--whatsapp" [href]="whatsAppUrl()" target="_blank" rel="noopener noreferrer">
+      <a class="btn btn--whatsapp" [appExternalLink]="currentProfile.whatsAppUrl">
         <app-icon name="whatsapp" [size]="18" />
         {{ t.chatOnWhatsApp }}
       </a>
@@ -39,13 +39,11 @@
     @for (link of currentProfile.socialLinks; track link.platform; let index = $index) {
       <li [appReveal]="index * 80">
         <a
-          class="channel glass"
+          class="channel glass hover-lift"
           [class.channel--whatsapp]="link.platform === 'whatsapp'"
-          [href]="link.platform === 'whatsapp' ? whatsAppUrl() : link.url"
-          [attr.target]="link.platform === 'email' ? null : '_blank'"
-          rel="noopener noreferrer"
+          [appExternalLink]="link.url"
         >
-          <span class="channel__icon"><app-icon [name]="link.icon" [size]="22" /></span>
+          <span class="icon-tile channel__icon"><app-icon [name]="link.icon" [size]="22" /></span>
           <span class="channel__body">
             <span class="channel__label">{{ link.label }}</span>
             <span class="channel__handle">{{ link.handle }}</span>

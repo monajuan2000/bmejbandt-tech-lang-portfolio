@@ -1,10 +1,8 @@
-import { ChangeDetectionStrategy, Component, inject, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 
-import { LanguageService } from '@core/i18n';
+import { injectTranslations } from '@core/i18n';
 import { SkillGroup } from '@core/models';
-import { IconComponent } from '@shared/components/icon/icon.component';
-import { TagListComponent } from '@shared/components/tag-list/tag-list.component';
-import { RevealDirective } from '@shared/directives/reveal.directive';
+import { IconComponent, RevealDirective, TagListComponent } from '@shared';
 
 @Component({
   selector: 'app-skill-groups',
@@ -46,5 +44,5 @@ import { RevealDirective } from '@shared/directives/reveal.directive';
 export class SkillGroupsComponent {
   readonly groups = input.required<readonly SkillGroup[]>();
 
-  protected readonly translations = inject(LanguageService).translations;
+  protected readonly translations = injectTranslations();
 }

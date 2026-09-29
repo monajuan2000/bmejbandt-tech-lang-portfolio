@@ -8,10 +8,8 @@
       <li>
         <a
           class="icon-button"
-          [href]="link.url"
+          [appExternalLink]="link.url"
           [attr.aria-label]="link.label"
-          [attr.target]="link.platform === 'email' ? null : '_blank'"
-          rel="noopener noreferrer"
         >
           <app-icon [name]="link.icon" [size]="18" />
         </a>

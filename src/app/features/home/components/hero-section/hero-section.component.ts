@@ -1,9 +1,9 @@
 import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
-import { LanguageService } from '@core/i18n';
+import { injectTranslations } from '@core/i18n';
 import { ProfileService, ProjectService } from '@core/services';
-import { IconComponent } from '@shared/components/icon/icon.component';
+import { IconComponent } from '@shared';
 
 interface HeroStat {
   readonly value: string;
@@ -22,7 +22,7 @@ export class HeroSectionComponent {
   private readonly projectService = inject(ProjectService);
 
   protected readonly profile = this.profileService.profile;
-  protected readonly translations = inject(LanguageService).translations;
+  protected readonly translations = injectTranslations();
 
   protected readonly stats = computed<readonly HeroStat[]>(() => {
     const t = this.translations().hero;

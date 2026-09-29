@@ -1,8 +1,8 @@
-import { ChangeDetectionStrategy, Component, ElementRef, inject, viewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, viewChild } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 
-import { LanguageService } from '@core/i18n';
-import { BackgroundVideoComponent, SiteFooterComponent, SiteHeaderComponent } from '@layout/index';
+import { injectTranslations } from '@core/i18n';
+import { BackgroundVideoComponent, SiteFooterComponent, SiteHeaderComponent } from '@layout';
 
 /** Application shell: persistent layout around the routed page. */
 @Component({
@@ -24,7 +24,7 @@ import { BackgroundVideoComponent, SiteFooterComponent, SiteHeaderComponent } fr
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent {
-  protected readonly translations = inject(LanguageService).translations;
+  protected readonly translations = injectTranslations();
 
   private readonly mainContent = viewChild.required<ElementRef<HTMLElement>>('mainContent');
 

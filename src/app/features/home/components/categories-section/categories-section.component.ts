@@ -1,11 +1,9 @@
 import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
-import { LanguageService } from '@core/i18n';
+import { injectTranslations } from '@core/i18n';
 import { ProjectService } from '@core/services';
-import { IconComponent } from '@shared/components/icon/icon.component';
-import { SectionHeaderComponent } from '@shared/components/section-header/section-header.component';
-import { RevealDirective } from '@shared/directives/reveal.directive';
+import { IconComponent, RevealDirective, SectionHeaderComponent } from '@shared';
 
 @Component({
   selector: 'app-categories-section',
@@ -17,7 +15,7 @@ import { RevealDirective } from '@shared/directives/reveal.directive';
 export class CategoriesSectionComponent {
   private readonly projectService = inject(ProjectService);
 
-  protected readonly translations = inject(LanguageService).translations;
+  protected readonly translations = injectTranslations();
 
   protected readonly categories = computed(() => {
     const formatCount = this.translations().common.projectCount;
