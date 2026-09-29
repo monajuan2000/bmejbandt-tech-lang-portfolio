@@ -4,20 +4,43 @@
   display: block;
 }
 
+// Mobile: info above actions. Desktop: info left, actions right, vertically centered.
 .email {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
+  display: grid;
   gap: var(--space-6);
-  padding: clamp(var(--space-6), 4vw, var(--space-10));
+  align-items: center;
+  padding: clamp(var(--space-6), 3.5vw, var(--space-8));
+
+  @include bp.up(lg) {
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: var(--space-10);
+  }
+}
+
+.email__info {
+  display: grid;
+  gap: var(--space-2);
+  min-width: 0;
+}
+
+.email__eyebrow {
+  margin-bottom: 0;
+}
+
+.email__address-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  min-width: 0;
 }
 
 .email__address {
+  min-width: 0;
   font-family: var(--font-display);
-  font-size: var(--font-size-2xl);
+  font-size: var(--font-size-xl);
   font-weight: 700;
-  word-break: break-word;
+  line-height: 1.2;
+  overflow-wrap: anywhere;
   transition: color var(--duration-fast) ease;
 
   &:hover {
@@ -25,21 +48,34 @@
   }
 }
 
-.email__actions {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: var(--space-3);
-}
-
 .email__copy-button {
-  width: 48px;
-  height: 48px;
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  color: var(--color-text-subtle);
+
+  &:hover,
+  &.is-copied {
+    color: var(--color-success);
+  }
 }
 
-@include bp.down(sm) {
-  .email__actions .btn {
-    flex: 1 1 100%;
+// Equal-width actions; stacked on phones.
+.email__actions {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-3);
+
+  .btn {
+    width: 100%;
+  }
+
+  @include bp.up(lg) {
+    grid-template-columns: repeat(2, minmax(200px, 1fr));
+  }
+
+  @include bp.down(sm) {
+    grid-template-columns: 1fr;
   }
 }
 

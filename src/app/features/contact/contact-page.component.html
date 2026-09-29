@@ -5,9 +5,21 @@
   <app-section-header [level]="1" [eyebrow]="t.eyebrow" [title]="t.title" [description]="t.description" />
 
   <div class="email glass" appReveal>
-    <div class="email__copy">
-      <p class="eyebrow">{{ t.preferredChannel }}</p>
-      <a class="email__address" [href]="'mailto:' + currentProfile.email">{{ currentProfile.email }}</a>
+    <div class="email__info">
+      <p class="eyebrow email__eyebrow">{{ t.preferredChannel }}</p>
+      <div class="email__address-row">
+        <a class="email__address" [href]="'mailto:' + currentProfile.email">{{ currentProfile.email }}</a>
+        <button
+          type="button"
+          class="icon-button email__copy-button"
+          [class.is-copied]="isEmailCopied()"
+          (click)="copyEmail()"
+          [attr.aria-label]="isEmailCopied() ? t.copied : t.copyEmail"
+          [attr.title]="isEmailCopied() ? t.copied : t.copyEmail"
+        >
+          <app-icon [name]="isEmailCopied() ? 'check' : 'copy'" [size]="16" />
+        </button>
+      </div>
     </div>
 
     <div class="email__actions">
@@ -19,15 +31,6 @@
         <app-icon name="whatsapp" [size]="18" />
         {{ t.chatOnWhatsApp }}
       </a>
-      <button
-        type="button"
-        class="icon-button email__copy-button"
-        (click)="copyEmail()"
-        [attr.aria-label]="isEmailCopied() ? t.copied : t.copyEmail"
-        [attr.title]="isEmailCopied() ? t.copied : t.copyEmail"
-      >
-        <app-icon [name]="isEmailCopied() ? 'check' : 'copy'" [size]="18" />
-      </button>
     </div>
     <span class="visually-hidden" aria-live="polite">{{ isEmailCopied() ? t.copiedAnnouncement : '' }}</span>
   </div>
