@@ -5,6 +5,7 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
+    "deploy": "ng build && npx angular-cli-ghpages --dir=dist/bmejbandt-tech-lang-portfolio/browser --no-silent --name=\"Juan Esteban Mona\" --email=\"87776740+monajuan2000@users.noreply.github.com\"",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "serve:ssr:bmejbandt-tech-lang-portfolio": "node dist/bmejbandt-tech-lang-portfolio/server/server.mjs"
