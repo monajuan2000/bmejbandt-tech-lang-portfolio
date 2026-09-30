@@ -87,7 +87,7 @@ export const PROJECTS: readonly ProjectContent[] = [
   {
     id: 'shotshroom-lab',
     categoryId: 'frontend',
-    title: 'ShotShroom Lab',
+    title: 'Shotshroom Lab',
     description: {
       en: 'A cocktail discovery web app featuring classic recipes and a guide to the spirits behind them, with fast search, filtering, and a responsive, content-rich interface.',
       es: 'Una aplicación web para descubrir coctelería, con recetas clásicas y una guía de los licores que las componen, búsqueda rápida, filtros y una interfaz responsive rica en contenido.',
@@ -97,10 +97,23 @@ export const PROJECTS: readonly ProjectContent[] = [
     links: { live: 'https://monajuan2000.github.io/shotshroomlab-web-app/' },
     image: {
       src: 'assets/images/SHOTSHROOM_LAB_LOGO.svg',
-      alt: { en: 'ShotShroom Lab logo', es: 'Logo de ShotShroom Lab' },
+      alt: { en: 'Shotshroom Lab logo', es: 'Logo de Shotshroom Lab' },
       width: 64,
       height: 64,
     },
+    featured: true,
+  },
+  {
+    id: 'macocare',
+    categoryId: 'full-stack',
+    title: 'Mascocare',
+    description: {
+      en: 'A pet care application to help owners keep track of everything their pets need.',
+      es: 'Una aplicación para el cuidado de mascotas que ayuda a sus dueños a llevar el control de todo lo que necesitan.',
+    },
+    type: { en: 'Pet Care App', es: 'App para mascotas' },
+    // TODO: add technologies, live link and logo once the project details are ready.
+    technologies: [],
     featured: true,
   },
   {
