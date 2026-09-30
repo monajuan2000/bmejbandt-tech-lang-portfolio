@@ -1,40 +1,43 @@
 @let t = translations();
 
-@if (project(); as featured) {
-  <section class="section container" aria-labelledby="featured-title">
-    <article class="featured glass" appReveal>
-      <div class="featured__copy">
-        <p class="eyebrow">
-          <app-icon name="sparkles" [size]="14" />
-          {{ t.featuredProject.eyebrow }}
-        </p>
-        <h2 id="featured-title" class="featured__title">{{ featured.title }}</h2>
-        @if (category(); as featuredCategory) {
-          <p class="featured__type">{{ featured.type }} · {{ featuredCategory.name }}</p>
-        }
-        <p class="featured__description">{{ featured.description }}</p>
-        <app-tag-list [tags]="featured.technologies" [label]="t.projectCard.technologies" />
-
-        <div class="featured__actions">
-          @if (featured.links?.live; as liveUrl) {
-            <a class="btn btn--primary" [appExternalLink]="liveUrl">
-              {{ t.featuredProject.visitProject }}
-              <app-icon name="external" [size]="18" />
-            </a>
+@if (items().length) {
+  <section class="section container featured-list" [attr.aria-label]="t.featuredProject.eyebrow">
+    @for (item of items(); track item.project.id) {
+      @let featured = item.project;
+      <article class="featured glass" [attr.aria-labelledby]="'featured-title-' + featured.id" appReveal>
+        <div class="featured__copy">
+          <p class="eyebrow">
+            <app-icon name="sparkles" [size]="14" />
+            {{ t.featuredProject.eyebrow }}
+          </p>
+          <h2 [id]="'featured-title-' + featured.id" class="featured__title">{{ featured.title }}</h2>
+          @if (item.category; as featuredCategory) {
+            <p class="featured__type">{{ featured.type }} · {{ featuredCategory.name }}</p>
           }
-          <a class="btn btn--ghost" routerLink="/projects">{{ t.featuredProject.seeAllProjects }}</a>
-        </div>
-      </div>
+          <p class="featured__description">{{ featured.description }}</p>
+          <app-tag-list [tags]="featured.technologies" [label]="t.projectCard.technologies" />
 
-      @if (featured.image; as image) {
-        <div class="featured__visual">
-          <img [ngSrc]="image.src" [alt]="image.alt" [width]="image.width" [height]="image.height" />
+          <div class="featured__actions">
+            @if (featured.links?.live; as liveUrl) {
+              <a class="btn btn--primary" [appExternalLink]="liveUrl">
+                {{ t.featuredProject.visitProject }}
+                <app-icon name="external" [size]="18" />
+              </a>
+            }
+            <a class="btn btn--ghost" routerLink="/projects">{{ t.featuredProject.seeAllProjects }}</a>
+          </div>
         </div>
-      }
 
-      @if (featured.announcement; as announcement) {
-        <app-project-announcement class="featured__announcement" [announcement]="announcement" />
-      }
-    </article>
+        @if (featured.image; as image) {
+          <div class="featured__visual">
+            <img [ngSrc]="image.src" [alt]="image.alt" [width]="image.width" [height]="image.height" />
+          </div>
+        }
+
+        @if (featured.announcement; as announcement) {
+          <app-project-announcement class="featured__announcement" [announcement]="announcement" />
+        }
+      </article>
+    }
   </section>
 }

@@ -19,9 +19,10 @@ export class FeaturedProjectSectionComponent {
   private readonly projectService = inject(ProjectService);
 
   protected readonly translations = injectTranslations();
-  protected readonly project = this.projectService.featuredProject;
-  protected readonly category = computed(() => {
-    const project = this.project();
-    return project ? this.projectService.getCategory(project.categoryId) : undefined;
-  });
+  protected readonly items = computed(() =>
+    this.projectService.featuredProjects().map((project) => ({
+      project,
+      category: this.projectService.getCategory(project.categoryId),
+    })),
+  );
 }

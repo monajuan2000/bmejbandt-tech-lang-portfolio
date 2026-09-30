@@ -19,7 +19,8 @@ export class ProjectService {
   readonly categories = computed<readonly ProjectCategory[]>(() => this.languageService.resolve(PROJECT_CATEGORIES));
   readonly projects = computed<readonly Project[]>(() => this.languageService.resolve(PROJECTS));
 
-  readonly featuredProject = computed(() => this.projects().find((project) => project.featured));
+  /** Projects currently in progress, in data order — the home page highlights each one. */
+  readonly featuredProjects = computed(() => this.projects().filter((project) => project.featured));
 
   private readonly categoriesById = computed(
     () => new Map(this.categories().map((category) => [category.id, category] as const)),

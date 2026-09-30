@@ -4,6 +4,12 @@
   display: block;
 }
 
+.featured-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+}
+
 .featured {
   display: grid;
   gap: var(--space-8);

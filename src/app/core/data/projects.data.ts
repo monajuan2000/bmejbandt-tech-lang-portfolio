@@ -85,6 +85,25 @@ export const PROJECTS: readonly ProjectContent[] = [
     },
   },
   {
+    id: 'shotshroom-lab',
+    categoryId: 'frontend',
+    title: 'ShotShroom Lab',
+    description: {
+      en: 'A cocktail discovery web app featuring classic recipes and a guide to the spirits behind them, with fast search, filtering, and a responsive, content-rich interface.',
+      es: 'Una aplicación web para descubrir coctelería, con recetas clásicas y una guía de los licores que las componen, búsqueda rápida, filtros y una interfaz responsive rica en contenido.',
+    },
+    type: { en: 'Cocktail & Spirits Guide', es: 'Guía de cócteles y licores' },
+    technologies: ['React', 'Vite', 'CSS Modules', 'Search & Filters'],
+    links: { live: 'https://monajuan2000.github.io/shotshroomlab-web-app/' },
+    image: {
+      src: 'assets/images/SHOTSHROOM_LAB_LOGO.svg',
+      alt: { en: 'ShotShroom Lab logo', es: 'Logo de ShotShroom Lab' },
+      width: 64,
+      height: 64,
+    },
+    featured: true,
+  },
+  {
     id: 'operations-dashboard',
     categoryId: 'full-stack',
     title: 'Operations Dashboard',
