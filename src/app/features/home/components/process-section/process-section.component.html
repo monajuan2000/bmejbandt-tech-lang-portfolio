@@ -1,0 +1,31 @@
+@let t = translations().processSection;
+@let total = steps().length;
+
+<section class="section container" aria-labelledby="process-title">
+  <app-section-header
+    appReveal
+    headingId="process-title"
+    [eyebrow]="t.eyebrow"
+    [title]="t.title"
+    [description]="t.description"
+  />
+
+  <ol class="steps">
+    @for (step of steps(); track step.id; let index = $index) {
+      <li class="step" [appReveal]="index * 100">
+        <span class="step__marker">
+          <span class="visually-hidden">{{ t.stepLabel(index + 1, total) }}</span>
+          <span aria-hidden="true">{{ index + 1 }}</span>
+        </span>
+
+        <div class="step__card glass hover-lift">
+          <span class="icon-tile step__icon">
+            <app-icon [name]="step.icon" [size]="22" />
+          </span>
+          <h3 class="step__title">{{ step.title }}</h3>
+          <p class="step__description">{{ step.description }}</p>
+        </div>
+      </li>
+    }
+  </ol>
+</section>

@@ -45,6 +45,15 @@ export const EN_TRANSLATIONS = {
     eyebrow: 'What I do',
     title: 'Technology, engineering and language',
     description: 'A blend of product engineering and communication skills to help teams ship with clarity.',
+    featuredBadge: 'What sets me apart',
+    featuredAction: 'Book a lesson',
+    tagsLabel: (serviceTitle: string) => `${serviceTitle} focus areas`,
+  },
+  processSection: {
+    eyebrow: 'How I work',
+    title: 'A clear process from start to finish',
+    description: 'Four stages that keep every project focused, transparent, and ready to grow.',
+    stepLabel: (step: number, total: number) => `Step ${step} of ${total}`,
   },
   categoriesSection: {
     eyebrow: 'Disciplines',

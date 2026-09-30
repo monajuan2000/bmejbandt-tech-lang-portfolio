@@ -1,8 +1,8 @@
 import { Injectable, computed, inject } from '@angular/core';
 
-import { EXPERIENCE, PROFILE, SERVICE_OFFERINGS, SKILL_GROUPS } from '@core/data';
+import { EXPERIENCE, PROFILE, SERVICE_OFFERINGS, SKILL_GROUPS, WORK_PROCESS_STEPS } from '@core/data';
 import { LanguageService } from '@core/i18n';
-import { Experience, Profile, ServiceOffering, SkillGroup, SocialLinkContent } from '@core/models';
+import { Experience, ProcessStep, Profile, ServiceOffering, SkillGroup, SocialLinkContent } from '@core/models';
 import { buildGmailComposeUrl, buildWhatsAppUrl } from '@core/utils';
 
 /**
@@ -37,4 +37,5 @@ export class ProfileService {
   readonly skillGroups = computed<readonly SkillGroup[]>(() => this.languageService.resolve(SKILL_GROUPS));
   readonly experience = computed<readonly Experience[]>(() => this.languageService.resolve(EXPERIENCE));
   readonly services = computed<readonly ServiceOffering[]>(() => this.languageService.resolve(SERVICE_OFFERINGS));
+  readonly processSteps = computed<readonly ProcessStep[]>(() => this.languageService.resolve(WORK_PROCESS_STEPS));
 }

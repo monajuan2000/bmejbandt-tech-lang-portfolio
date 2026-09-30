@@ -44,6 +44,15 @@ export const ES_TRANSLATIONS: Translations = {
     title: 'Tecnología, ingeniería e idiomas',
     description:
       'Una combinación de ingeniería de producto y habilidades de comunicación para ayudar a los equipos a entregar con claridad.',
+    featuredBadge: 'Mi diferencial',
+    featuredAction: 'Reserva una clase',
+    tagsLabel: (serviceTitle: string) => `Enfoques de ${serviceTitle}`,
+  },
+  processSection: {
+    eyebrow: 'Cómo trabajo',
+    title: 'Un proceso claro de principio a fin',
+    description: 'Cuatro etapas que mantienen cada proyecto enfocado, transparente y listo para crecer.',
+    stepLabel: (step: number, total: number) => `Paso ${step} de ${total}`,
   },
   categoriesSection: {
     eyebrow: 'Disciplinas',

@@ -5,6 +5,7 @@ import { CallToActionComponent, RevealDirective } from '@shared';
 import { CategoriesSectionComponent } from './components/categories-section/categories-section.component';
 import { FeaturedProjectSectionComponent } from './components/featured-project-section/featured-project-section.component';
 import { HeroSectionComponent } from './components/hero-section/hero-section.component';
+import { ProcessSectionComponent } from './components/process-section/process-section.component';
 import { ServicesSectionComponent } from './components/services-section/services-section.component';
 
 @Component({
@@ -14,6 +15,7 @@ import { ServicesSectionComponent } from './components/services-section/services
     CategoriesSectionComponent,
     FeaturedProjectSectionComponent,
     HeroSectionComponent,
+    ProcessSectionComponent,
     RevealDirective,
     ServicesSectionComponent,
   ],
@@ -21,6 +23,7 @@ import { ServicesSectionComponent } from './components/services-section/services
     <app-hero-section />
     <app-featured-project-section />
     <app-services-section />
+    <app-process-section />
 
     @defer (on viewport) {
       <app-categories-section />

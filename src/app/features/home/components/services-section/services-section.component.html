@@ -9,14 +9,41 @@
     [description]="t.description"
   />
 
-  <ul class="card-grid">
+  <ul class="services">
     @for (service of services(); track service.id; let index = $index) {
-      <li class="service glass hover-lift" [appReveal]="index * 80">
-        <span class="icon-tile service__icon">
-          <app-icon [name]="service.icon" [size]="24" />
-        </span>
-        <h3 class="service__title">{{ service.title }}</h3>
-        <p class="service__description">{{ service.description }}</p>
+      <li
+        class="service glass hover-lift"
+        [class.service--featured]="service.featured"
+        [style.--service-accent]="service.accent"
+        [appReveal]="index * 80"
+      >
+        <div class="service__head">
+          <span class="icon-tile service__icon">
+            <app-icon [name]="service.icon" [size]="service.featured ? 28 : 24" />
+          </span>
+          <span class="service__number" aria-hidden="true">{{ service.number }}</span>
+        </div>
+
+        <div class="service__body">
+          @if (service.featured) {
+            <p class="service__badge">
+              <app-icon name="sparkles" [size]="14" />
+              {{ t.featuredBadge }}
+            </p>
+          }
+
+          <h3 class="service__title">{{ service.title }}</h3>
+          <p class="service__description">{{ service.description }}</p>
+
+          <app-tag-list class="service__tags" [tags]="service.tags" [label]="t.tagsLabel(service.title)" />
+        </div>
+
+        @if (service.featured) {
+          <a class="btn btn--primary service__action" routerLink="/contact">
+            {{ t.featuredAction }}
+            <app-icon name="arrow-right" [size]="16" />
+          </a>
+        }
       </li>
     }
   </ul>

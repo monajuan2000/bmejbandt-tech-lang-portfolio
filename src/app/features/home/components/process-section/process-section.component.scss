@@ -1,0 +1,89 @@
+@use 'breakpoints' as bp;
+
+:host {
+  display: block;
+}
+
+// Vertical timeline on small screens; a horizontal row of four on large screens.
+// The connecting line is drawn per step (`::after`) so it always ends at the last marker.
+.steps {
+  --marker-size: 44px;
+
+  display: grid;
+  gap: var(--space-6);
+
+  @include bp.up(lg) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.step {
+  position: relative;
+  display: grid;
+  grid-template-columns: var(--marker-size) 1fr;
+  gap: var(--space-4);
+
+  // Connector to the next marker.
+  &:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    top: var(--marker-size);
+    bottom: calc(var(--space-6) * -1);
+    left: calc(var(--marker-size) / 2 - 1px);
+    width: 2px;
+    background: linear-gradient(var(--color-primary), color-mix(in srgb, var(--color-primary) 15%, transparent));
+  }
+
+  @include bp.up(lg) {
+    grid-template-columns: 1fr;
+    grid-template-rows: var(--marker-size) 1fr;
+
+    &:not(:last-child)::after {
+      top: calc(var(--marker-size) / 2 - 1px);
+      bottom: auto;
+      left: var(--marker-size);
+      right: calc(var(--space-6) * -1);
+      width: auto;
+      height: 2px;
+      background: linear-gradient(90deg, var(--color-primary), color-mix(in srgb, var(--color-primary) 15%, transparent));
+    }
+  }
+}
+
+.step__marker {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  width: var(--marker-size);
+  height: var(--marker-size);
+  border-radius: var(--radius-pill);
+  background: var(--gradient-brand);
+  color: var(--color-on-primary);
+  font-family: var(--font-display);
+  font-weight: 700;
+  box-shadow: 0 0 0 6px color-mix(in srgb, var(--color-primary) 14%, transparent);
+}
+
+.step__card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding: var(--space-6);
+
+  &:hover .step__icon {
+    transform: rotate(-6deg) scale(1.05);
+  }
+}
+
+.step__icon {
+  transition: transform var(--duration-base) var(--ease-out);
+}
+
+.step__title {
+  font-size: var(--font-size-xl);
+}
+
+.step__description {
+  color: var(--color-text-muted);
+}
