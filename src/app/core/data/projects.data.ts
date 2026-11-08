@@ -112,7 +112,12 @@ export const PROJECTS: readonly ProjectContent[] = [
       es: 'Una aplicación para el cuidado de mascotas que ayuda a sus dueños a llevar el control de todo lo que necesitan.',
     },
     type: { en: 'Pet Care App', es: 'App para mascotas' },
-    // TODO: add technologies, live link and logo once the project details are ready.
+    image: {
+      src: 'assets/images/MASCOCARE_MAIN_IMAGE.png',
+      alt: { en: 'Mascocare main logo', es: 'Logo principal de Mascocare' },
+      width: 1366,
+      height: 768,
+    },
     technologies: [],
     featured: true,
   },

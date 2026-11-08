@@ -12,6 +12,12 @@
     <span class="card__type">{{ currentProject.type }}</span>
   </div>
 
+  @if (currentProject.image; as image) {
+    <div class="card__visual">
+      <img [ngSrc]="image.src" [alt]="image.alt" [width]="image.width" [height]="image.height" />
+    </div>
+  }
+
   <h3 class="card__title">{{ currentProject.title }}</h3>
   <p class="card__description">{{ currentProject.description }}</p>
 

@@ -1,3 +1,4 @@
+import { NgOptimizedImage } from '@angular/common';
 import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
 
 import { injectTranslations } from '@core/i18n';
@@ -9,7 +10,7 @@ import { TagListComponent } from '../tag-list/tag-list.component';
 
 @Component({
   selector: 'app-project-card',
-  imports: [ExternalLinkDirective, IconComponent, TagListComponent],
+  imports: [NgOptimizedImage, ExternalLinkDirective, IconComponent, TagListComponent],
   templateUrl: './project-card.component.html',
   styleUrl: './project-card.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
